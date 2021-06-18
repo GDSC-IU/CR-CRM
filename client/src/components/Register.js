@@ -1,30 +1,34 @@
 import React, { Component } from 'react';
 import { Switch, Route, Link } from "react-router-dom";
 import Login from './login';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Navbar, Container } from 'react-bootstrap';
 
 class Register extends Component {
     
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
 
-        this.state = {
-            f_name: '',
-            l_name: '',
-            u_name: '',
-            pwd: ''
-        };
+    this.state = {
+			cname: '',
+			title: '',
+			add: '',
+			phn: '',
+			website: '',
+			email: '',
+			pwd: ''
+    };
 
-        this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
-    }
+  
+	}
 
-    handleInputChange(event) {
-        const name = event.target.name;
-        const value = event.target.value;
-        this.setState({[name]: value});
-        // console.log(`${name}: ${value}`);
-    }
+  handleInputChange(event) {
+    const name = event.target.name;
+    const value = event.target.value;
+    this.setState({[name]: value});
+    // console.log(`${name}: ${value}`);
+  }
 
 	handleSubmit(e) {
 		e.preventDefault();
@@ -32,13 +36,13 @@ class Register extends Component {
 	}
 
 	async sendData() {
-		const {f_name, l_name, u_name, pwd} = this.state;
+		const {cname, title, add, phn, website, email, pwd} = this.state;
 		try {
 			const res = await fetch('http://localhost:8000/user', {
 				method: 'POST',
 				headers: {'Content-Type': 'application/json'},
-				body: JSON.stringify({f_name, l_name, u_name, pwd}),
-            });
+				body: JSON.stringify({cname, title, add, phn, website, email, pwd}),
+      });
 			const result = await res.json();
 			console.log(result);
 			alert('Data Created');
@@ -48,51 +52,69 @@ class Register extends Component {
 		}
 	}
     
-    render() {
-        return (
-                <div>
-                    <Navbar bg="primary" variant="dark">
-                        <Navbar.Brand href="#home">CR-CRM</Navbar.Brand>
-                        <Nav className="">
-                            <Nav.Link href="#home">Sign In</Nav.Link>
-                            <Nav.Link href="#features">Sign Up</Nav.Link>
-                        </Nav>
-                    </Navbar>
-                    <div className="outer">
-                    <div className="inner">
-                    <Form action="/user" method="POST">
-                        <h3>Register</h3>
-                        <Form.Group controlId="formPlainText">
-                            <Form.Label>First Name</Form.Label>
-                            <Form.Control name="f_name" type="text" value={this.state.f_name} onChange={this.handleInputChange} placeholder="First Name" />
-                        </Form.Group>
-                        <Form.Group controlId="formPlainText">
-                            <Form.Label>Last Name</Form.Label>
-                            <Form.Control name="l_name" type="text" value={this.state.l_name} onChange={this.handleInputChange} placeholder="Last Name" />
-                        </Form.Group>
-                        <Form.Group controlId="formBasicEmail">
-                            <Form.Label>Username</Form.Label>
-                            <Form.Control name="u_name" type="email" value={this.state._uname} onChange={this.handleInputChange} placeholder="Enter username" />
-                        </Form.Group>
-                        <Form.Group controlId="formBasicPassword">
-                            <Form.Label>Password</Form.Label>
-                            <Form.Control name="pwd" type="password" value={this.state.pwd} onChange={this.handleInputChange} placeholder="Enter password" />
-                        </Form.Group>
-                        <Button onClick={this.handleSubmit} variant="dark" type="submit" block>
-                            Sign Up
-                        </Button>
-                        <p className="forgot-password text-right">
-                            Already registered? <Link to={"/sign-in"}>Sign In</Link>
-                        </p>
-                    <Switch>
-                        <Route path="/sign-in" component={Login} />
-                    </Switch>
-                </Form>
-                </div>
-                </div>
+  render() {
+    return (
+      <div>
+        <Navbar bg="primary" variant="dark">
+          <Container>
+            <Link className="navbar-brand" to={"/"}>CR-CRM</Link>
+            <div className="collapse navbar-collapse">
+              <ul className="navbar-nav ml-auto">
+                <li className="nav-item">
+                  <Link className="nav-link" to={"/login"}>Login</Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to={"/register"}>Register</Link>
+                </li>
+              </ul>
             </div>
-        );
-    }
+          </Container>
+        </Navbar>
+        <div className="inner">  
+          <Form action="/user" method="POST">
+            <h3>Register Company</h3>
+						<Form.Group>
+              <Form.Label>Name</Form.Label>
+              <Form.Control name="cname" type="text" value={this.state.cname} onChange={this.handleInputChange} placeholder="Company Name" />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label>Title</Form.Label>
+              <Form.Control name="title" type="text" value={this.state.title} onChange={this.handleInputChange} placeholder="Company Title" />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label>Address</Form.Label>
+              <Form.Control name="add" type="text" value={this.state.add} onChange={this.handleInputChange} placeholder="Building, Street, State" />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label>Phone No.</Form.Label>
+              <Form.Control name="phn" type="tel" value={this.state.phn} onChange={this.handleInputChange} placeholder="6********9"></Form.Control>
+            </Form.Group>
+            <Form.Group>
+              <Form.Label>Website</Form.Label>
+              <Form.Control name="website" type="url" value={this.state.website} onChange={this.handleInputChange} placeholder="xyz.com"></Form.Control>
+            </Form.Group>
+            <Form.Group controlId="formBasicEmail">
+              <Form.Label>Email Account</Form.Label>
+              <Form.Control name="email" type="email" value={this.state.email} onChange={this.handleInputChange} placeholder="Enter Company Mail Id" />
+            </Form.Group>
+            <Form.Group controlId="formBasicPassword">
+              <Form.Label>Password</Form.Label>
+              <Form.Control name="pwd" type="password" value={this.state.pwd} onChange={this.handleInputChange} placeholder="Enter password" />
+            </Form.Group>
+            <Button onClick={this.handleSubmit} variant="dark" type="submit" size="lg" block>
+              Register
+            </Button>
+            <p className="forgot-password text-right">
+              Already Registered? <Link to={"/login"}>Sign In</Link>
+            </p>
+          </Form>
+        </div>
+        <Switch>
+          <Route path="/login" component={Login} />
+        </Switch> 
+      </div>
+    );
+  }
 }
 
 export default Register;
