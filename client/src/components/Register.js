@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Switch, Route, Link } from "react-router-dom";
 import Login from './login';
-import { Form, Button, Navbar, Container } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
+import Navigation from './navbar';
 
 class Register extends Component {
     
@@ -38,7 +39,7 @@ class Register extends Component {
 	async sendData() {
 		const {cname, title, add, phn, website, email, pwd} = this.state;
 		try {
-			const res = await fetch('http://localhost:8000/user', {
+			const res = await fetch('http://localhost:8000/comp', {
 				method: 'POST',
 				headers: {'Content-Type': 'application/json'},
 				body: JSON.stringify({cname, title, add, phn, website, email, pwd}),
@@ -55,21 +56,7 @@ class Register extends Component {
   render() {
     return (
       <div>
-        <Navbar bg="primary" variant="dark">
-          <Container>
-            <Link className="navbar-brand" to={"/"}>CR-CRM</Link>
-            <div className="collapse navbar-collapse">
-              <ul className="navbar-nav ml-auto">
-                <li className="nav-item">
-                  <Link className="nav-link" to={"/login"}>Login</Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to={"/register"}>Register</Link>
-                </li>
-              </ul>
-            </div>
-          </Container>
-        </Navbar>
+        <Navigation />
         <div className="inner">  
           <Form action="/user" method="POST">
             <h3>Register Company</h3>

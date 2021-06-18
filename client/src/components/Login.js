@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Navbar, Button, Container, Form } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
 import { Link, Switch, Route} from 'react-router-dom';
+import Navigation from './navbar';
 import Register from './register';
 
 
@@ -25,22 +26,8 @@ class Login extends Component {
 
   render() {
     return (
-      <div>  
-        <Navbar bg="primary" variant="dark">
-          <Container>
-            <Link className="navbar-brand" to={"/"}>CR-CRM</Link>
-            <div className="collapse navbar-collapse">
-              <ul className="navbar-nav ml-auto">
-                <li className="nav-item">
-                  <Link className="nav-link" to={"/login"}>Login</Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to={"/register"}>Register</Link>
-                </li>
-              </ul>
-            </div>
-          </Container>
-        </Navbar>
+      <div>
+        <Navigation />
         <div className="inner">  
           <Form action="profile" method="POST">
             <h3>LogIn with Company Id</h3>

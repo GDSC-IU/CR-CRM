@@ -2,7 +2,7 @@ const express = require('express'),
       app = express(),
       mongoose = require('mongoose'),
       url = 'mongodb://localhost:27017/crCRM',
-      route = require('./routes/users');
+      route = require('./routes/users.js');
     
 app.use(express.json());
 
