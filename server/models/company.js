@@ -1,8 +1,8 @@
 const mongoose = require('mongoose'),
-      loginSchema = new mongoose.Schema({
+      compSchema = new mongoose.Schema({
         compID: { 
             type: Number, 
-            required: true 
+            // required: true 
         }, 
         compName: { 
             type: String, 
@@ -20,21 +20,16 @@ const mongoose = require('mongoose'),
             type: String, 
             required: true 
         }, 
-        compPhone: { 
+        compPhn: { 
             type: Number, 
             minimum: 6000000000, 
             maximum: 9999999999, 
             required: true 
         }, 
-        website: { 
-            type: String, 
-            required: false 
-        },
-        status: {
-            type: Boolean 
-        } 
+        website: String,
+        status: Boolean
       });
 
 
 
-module.exports = mongoose.model('company', loginSchema);
+module.exports = mongoose.model('company', compSchema);

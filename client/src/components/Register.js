@@ -10,13 +10,20 @@ class Register extends Component {
     super(props);
 
     this.state = {
-			cname: '',
-			title: '',
-			add: '',
-			phn: '',
+			compName: '',
+			compTitle: '',
+			compAdd: '',
+			compPhn: '',
 			website: '',
-			email: '',
-			pwd: ''
+			compEmail: '',
+			pwd: '',
+      roleID: 1,
+      firstName: "Admin",
+      lastName: "Admin",
+      userName: "Admin",
+      email: '',
+      phone: '',
+      status: "Active"
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -28,6 +35,10 @@ class Register extends Component {
     const name = event.target.name;
     const value = event.target.value;
     this.setState({[name]: value});
+    if (name === 'compEmail')
+      this.setState({email: value});
+    else if (name === 'compPhn')
+      this.setState({phone: value});
     // console.log(`${name}: ${value}`);
   }
 
@@ -37,16 +48,26 @@ class Register extends Component {
 	}
 
 	async sendData() {
-		const {cname, title, add, phn, website, email, pwd} = this.state;
+		const {compName, compTitle, compAdd, compPhn, website, compEmail} = this.state;
 		try {
-			const res = await fetch('http://localhost:8000/comp', {
+			const res = await fetch('http://localhost:8080/comp', {
 				method: 'POST',
 				headers: {'Content-Type': 'application/json'},
-				body: JSON.stringify({cname, title, add, phn, website, email, pwd}),
+				body: JSON.stringify({compName, compTitle, compAdd, compPhn, website, compEmail}),
       });
 			const result = await res.json();
 			console.log(result);
-			alert('Data Created');
+			alert('Company Registered!');
+
+      const { roleID, firstName, lastName, userName, pwd, email, phone, status } = this.state;
+      const res2 = await fetch('http://localhost:8080/emp', {
+				method: 'POST',
+				headers: {'Content-Type': 'application/json'},
+				body: JSON.stringify({compID: result.compID, roleID, firstName, lastName, userName, pwd, email, phone, status}),
+      });
+      const result2 = await res2.json();
+      console.log(result2);
+      alert('Admin Created!!');
 		}
 		catch(err) {
 			console.log(err);
@@ -62,19 +83,19 @@ class Register extends Component {
             <h3>Register Company</h3>
 						<Form.Group>
               <Form.Label>Name</Form.Label>
-              <Form.Control name="cname" type="text" value={this.state.cname} onChange={this.handleInputChange} placeholder="Company Name" />
+              <Form.Control name="compName" type="text" value={this.state.compName} onChange={this.handleInputChange} placeholder="Company Name" />
             </Form.Group>
             <Form.Group>
               <Form.Label>Title</Form.Label>
-              <Form.Control name="title" type="text" value={this.state.title} onChange={this.handleInputChange} placeholder="Company Title" />
+              <Form.Control name="compTitle" type="text" value={this.state.compTitle} onChange={this.handleInputChange} placeholder="Company Title" />
             </Form.Group>
             <Form.Group>
               <Form.Label>Address</Form.Label>
-              <Form.Control name="add" type="text" value={this.state.add} onChange={this.handleInputChange} placeholder="Building, Street, State" />
+              <Form.Control name="compAdd" type="text" value={this.state.compAdd} onChange={this.handleInputChange} placeholder="Building, Street, State" />
             </Form.Group>
             <Form.Group>
               <Form.Label>Phone No.</Form.Label>
-              <Form.Control name="phn" type="tel" value={this.state.phn} onChange={this.handleInputChange} placeholder="6********9"></Form.Control>
+              <Form.Control name="compPhn" type="tel" value={this.state.compPhn} onChange={this.handleInputChange} placeholder="6********9"></Form.Control>
             </Form.Group>
             <Form.Group>
               <Form.Label>Website</Form.Label>
@@ -82,7 +103,7 @@ class Register extends Component {
             </Form.Group>
             <Form.Group controlId="formBasicEmail">
               <Form.Label>Email Account</Form.Label>
-              <Form.Control name="email" type="email" value={this.state.email} onChange={this.handleInputChange} placeholder="Enter Company Mail Id" />
+              <Form.Control name="compEmail" type="email" value={this.state.compEmail} onChange={this.handleInputChange} placeholder="Enter Company Mail Id" />
             </Form.Group>
             <Form.Group controlId="formBasicPassword">
               <Form.Label>Password</Form.Label>

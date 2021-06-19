@@ -16,9 +16,9 @@ const mongoose = require('mongoose'),
             type: String, 
             required: true 
         }, 
-        status: {
-            type: Boolean 
-        } 
+        // status: {
+        //     type: Boolean 
+        // } 
       });
 
 
