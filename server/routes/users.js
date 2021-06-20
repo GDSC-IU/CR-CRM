@@ -65,4 +65,35 @@ app.get('/emps', async (req, res) => {
 });
 
 
+app.post('/comp-auth', async (req, res) => {
+    try {
+        const comp = await employee.findOne(req.body);
+        // console.log(comp);
+        if (comp === null)
+            res.status(404).send(false);
+        else
+            res.status(200).send(comp);
+    }
+    catch (err) {
+        res.status(500).send(err);
+    }
+
+});
+
+
+app.post('/data-retrieve', async (req, res) => {
+    try {
+        const comp = await company.findOne(req.body);
+        // console.log(comp);
+        if (comp === null)
+            res.status(404).send(false);
+        else
+            res.status(200).send(comp);
+    }
+    catch (err) {
+        res.status(500).send(err);
+    }
+
+});
+
 module.exports = app;

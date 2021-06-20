@@ -48,18 +48,18 @@ class Register extends Component {
 	}
 
 	async sendData() {
-		const {compName, compTitle, compAdd, compPhn, website, compEmail} = this.state;
+		const {compName, compTitle, compAdd, compPhn, website, compEmail, status} = this.state;
 		try {
 			const res = await fetch('http://localhost:8080/comp', {
 				method: 'POST',
 				headers: {'Content-Type': 'application/json'},
-				body: JSON.stringify({compName, compTitle, compAdd, compPhn, website, compEmail}),
+				body: JSON.stringify({compName, compTitle, compAdd, compPhn, website, compEmail, status}),
       });
 			const result = await res.json();
 			console.log(result);
 			alert('Company Registered!');
 
-      const { roleID, firstName, lastName, userName, pwd, email, phone, status } = this.state;
+      const { roleID, firstName, lastName, userName, pwd, email, phone } = this.state;
       const res2 = await fetch('http://localhost:8080/emp', {
 				method: 'POST',
 				headers: {'Content-Type': 'application/json'},
@@ -68,6 +68,17 @@ class Register extends Component {
       const result2 = await res2.json();
       console.log(result2);
       alert('Admin Created!!');
+      this.setState ({
+        compName: '',
+        compTitle: '',
+        compAdd: '',
+        compPhn: '',
+        website: '',
+        compEmail: '',
+        pwd: '',
+        email: '',
+        phone: ''
+      });
 		}
 		catch(err) {
 			console.log(err);

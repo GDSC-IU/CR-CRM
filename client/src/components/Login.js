@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Button, Form } from 'react-bootstrap';
-import { Link, Switch, Route} from 'react-router-dom';
+import { Link, Switch, Route } from 'react-router-dom';
 import Navigation from './navbar';
 import Register from './register';
+// import Dashboard from './dashboard';
 
 
 class Login extends Component {
@@ -16,12 +17,48 @@ class Login extends Component {
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+
   }
 
   handleInputChange(event) {
     const name = event.target.name;
     const value = event.target.value;
     this.setState({[name]: value});
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    this.SubmitForm();
+  }
+
+  async SubmitForm() {
+    const { email, pwd} = this.state;
+    if (email === '' || pwd === '')
+      alert('All fields required.');
+    else
+      try {
+        const res = await fetch('http://localhost:8080/comp-auth', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({email, pwd})
+        });
+        const result = await res.json();
+        // console.log(result);
+
+        if (!result) {
+          alert('User not found!');
+          return;
+        }
+        else {
+          // <Redirect to={`/profile/${result.compID}`} />
+          // return <Redirect to="/profile" />
+          this.props.history.push(`/profile/${result.compID}`)
+        }
+      }
+      catch (err) {
+        console.log(err);
+      }
   }
 
   render() {
@@ -33,7 +70,7 @@ class Login extends Component {
             <h3>LogIn with Company Id</h3>
             <Form.Group controlId="formBasicEmail">
               <Form.Label>Email Account</Form.Label>
-              <Form.Control name="uname" type="email" value={this.state.email} onChange={this.handleInputChange} placeholder="Enter Company Mail Id" />
+              <Form.Control name="email" type="email" value={this.state.email} onChange={this.handleInputChange} placeholder="Enter Company Mail Id" />
             </Form.Group>
             <Form.Group controlId="formBasicPassword">
               <Form.Label>Password</Form.Label>

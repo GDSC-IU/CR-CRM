@@ -2,7 +2,7 @@ const mongoose = require('mongoose'),
       compSchema = new mongoose.Schema({
         compID: { 
             type: Number, 
-            // required: true 
+            required: true 
         }, 
         compName: { 
             type: String, 
@@ -27,7 +27,7 @@ const mongoose = require('mongoose'),
             required: true 
         }, 
         website: String,
-        status: Boolean
+        status: String
       });
 
 

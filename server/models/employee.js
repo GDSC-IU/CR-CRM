@@ -2,7 +2,7 @@ const mongoose = require('mongoose'),
       empLogin = new mongoose.Schema({
         compID: { 
             type: Number, 
-            // required: true  
+            required: true  
         }, 
         roleID: { 
             type: Number, 
