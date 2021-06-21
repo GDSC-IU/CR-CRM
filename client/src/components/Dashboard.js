@@ -2,8 +2,8 @@ import React from 'react';
 import { Container, Row, Col, Navbar, Nav} from 'react-bootstrap';
 import '../style/sidebar.css';
 import { Link } from 'react-router-dom';
-import Employee from './EmpReg';
-import Customer from './CustReg';
+import Employee from './Employee';
+import Customer from './Customer';
 
 class Dashboard extends React.Component {
 

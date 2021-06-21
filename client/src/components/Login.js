@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { Link, Switch, Route } from 'react-router-dom';
-import Navigation from './Navbar';
+import Navigation from './Navigation';
 import Register from './Register';
 // import Dashboard from './dashboard';
 
