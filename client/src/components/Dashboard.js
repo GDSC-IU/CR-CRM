@@ -1,19 +1,20 @@
 import React from 'react';
 import { Container, Row, Col, Navbar, Nav} from 'react-bootstrap';
 import '../style/sidebar.css';
-import { Link } from 'react-router-dom';
+import { Switch, Route, Link } from 'react-router-dom';
 import Employee from './Employee';
 import Customer from './Customer';
+import panda from '../assets/panda.png';
 
 class Dashboard extends React.Component {
 
   constructor(props) {
-      super (props);
-  
-			this.state = {
-          user: '',
-          compID: this.props.match.params.compID
-      }
+    super (props);
+
+		this.state = {
+      user: '',
+      compID: this.props.match.params.compID
+    }
   
 	}
 
@@ -41,12 +42,6 @@ class Dashboard extends React.Component {
 
   render() {
 
-		const myStyle = {
-			height: "5rem",
-			width: "100%"
-			
-		};
-
     return (
       <>
         <Container fluid>
@@ -55,31 +50,34 @@ class Dashboard extends React.Component {
               <Navbar bg="primary" className="flex-column" variant="dark">
 								<Nav className="flex-column sidebar" variant="dark">
 									<Nav.Item style={{marginBottom: "1rem", textAlign: "center"}}>
-										<Link className="navbar-brand" style={{marginRight: "0px"}} to="/">CR-CRM</Link>
+										<Link className="navbar-brand space" style={{marginRight: "0px", width: "100%"}} to="/">
+                      <img src={panda}  style={{borderRadius: "50%", height: "2rem"}} />
+                      <span style={{marginLeft: "3px"}}>CR-CRM</span>
+                    </Link>
 									</Nav.Item>
 									<Nav.Item>
-										<span className="navbar-brand" style={{marginRight: "0px"}}>{this.state.user.compName}</span>
+										<Link className="navbar-brand space" style={{marginRight: "0px", border: ".5px solid #353935", width: "100%", borderRadius: "3px", padding: "15px 15px"}}>{this.state.user.compName}</Link>
 									</Nav.Item>
-									<Nav.Item style={{myStyle}}>
-										<Link className="nav-item" style={{color: "white"}} to="/">Add Customer</Link>
+									<Nav.Item>
+										<Link className="nav-item space" to="/">Add Customer &#9755;</Link>
 									</Nav.Item>
-									<Nav.Item style={{myStyle}}>
-										<Link className="nav-item" style={{color: "white"}} to="/">Add Employee</Link>
+									<Nav.Item>
+										<Link className="nav-item space" to="/">Add Employee &#9755;</Link>
 									</Nav.Item>
-									<Nav.Item style={{myStyle}}>
-										<Link className="nav-item" style={{color: "white"}} to="/">Update Details</Link>
+									<Nav.Item>
+										<Link className="nav-item space" to="/">Update Details &#9755;</Link>
 									</Nav.Item>
-									<Nav.Item style={{myStyle}}>
-										<Link className="nav-item" style={{color: "white"}} to="/">Logout</Link>
+									<Nav.Item>
+										<Link className="nav-item space" to="/">Logout  &#9755;</Link>
 									</Nav.Item>
-									<Nav.Item style={{myStyle}}>
-										<Link className="nav-item" style={{color: "white"}} to="/">Delete Account</Link>
+									<Nav.Item>
+										<Link className="nav-item space" to="/">Delete Account  &#9755;</Link>
 									</Nav.Item>
 								</Nav>
 							</Navbar>
             </Col>
-            <Col  sm={10} id="page-content-wrapper">
-              <Customer />
+            <Col  sm={10} className="inner-form" id="page-content-wrapper">
+              <Customer user={this.state.user}/>
             </Col> 
           </Row>
         </Container>

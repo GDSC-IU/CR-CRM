@@ -65,8 +65,7 @@ const mongoose = require('mongoose'),
             required: true 
         }, 
         endDate: {  
-            type: Date, 
-            required: true 
+            type: Date
         }, 
         assignto: {  
             type: String, 

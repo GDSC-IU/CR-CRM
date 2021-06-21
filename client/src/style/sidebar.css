@@ -16,3 +16,22 @@
     min-width: 0;
     width: 100%;
 }
+
+.space{
+    display: block;
+    padding: 20px 20px;
+    text-decoration: none;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+}
+.space:hover {
+    background-color: #0000CD;
+    color: #fff;
+    text-decoration: none;
+}
+.space {
+    float: right;
+    transition: .5s;
+}
