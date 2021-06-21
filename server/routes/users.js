@@ -96,4 +96,25 @@ app.post('/data-retrieve', async (req, res) => {
 
 });
 
+
+app.post('/add-Cust', async (req, res) => {
+    try {
+        if (await customer.countDocuments() === 0) {
+            req.body.custID = 1;
+        }
+        else {
+            const id = await customer.findOne({}).sort({compID: -1});
+            req.body.custID = id.custID + 1;
+        }
+        const cust = new customer(req.body);
+        await cust.save();
+        res.send(comp);
+    }
+    catch(error) {
+        console.log(error);
+        res.status(500).send(error);
+    }
+});
+
+
 module.exports = app;

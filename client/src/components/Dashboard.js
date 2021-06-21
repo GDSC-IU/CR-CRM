@@ -51,7 +51,7 @@ class Dashboard extends React.Component {
       <>
         <Container fluid>
           <Row>
-            <Col xs={2} variant="dark" className="bg-primary m-0" id="sidebar-wrapper">
+            <Col sm={2} variant="dark" className="bg-primary m-0" id="sidebar-wrapper">
               <Navbar bg="primary" className="flex-column" variant="dark">
 								<Nav className="flex-column sidebar" variant="dark">
 									<Nav.Item style={{marginBottom: "1rem", textAlign: "center"}}>
@@ -78,9 +78,8 @@ class Dashboard extends React.Component {
 								</Nav>
 							</Navbar>
             </Col>
-            <Col xs={1}></Col>
-            <Col  xs={9} id="page-content-wrapper">
-              this is a test
+            <Col  sm={10} id="page-content-wrapper">
+              <Customer />
             </Col> 
           </Row>
         </Container>
