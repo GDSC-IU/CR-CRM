@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Switch, Route, Link } from "react-router-dom";
-import Login from './login';
+import Login from './Login';
 import { Form, Button } from 'react-bootstrap';
-import Navigation from './navbar';
+import Navigation from './Navbar';
 
 class Register extends Component {
     

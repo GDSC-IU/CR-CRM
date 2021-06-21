@@ -1,8 +1,8 @@
 import './App.css';
 import { Component } from 'react';
-import Login from './components/login';
-import Register from './components/register';
-import Dashboard from './components/dashboard';
+import Login from './components/Login';
+import Register from './components/Register';
+import Dashboard from './components/Dashboard';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 class App extends Component {
