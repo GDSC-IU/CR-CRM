@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Switch, Route, Link } from "react-router-dom";
+// import { Switch, Route, Link } from "react-router-dom";
 // import Login from './Login';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Card } from 'react-bootstrap';
 
 class Employee extends Component {
   
@@ -9,7 +9,17 @@ class Employee extends Component {
 
 		return (
 			<>
-				
+				<Card>
+					<Card.Body>
+						<Card.Title>Employee Registration</Card.Title>
+						<Form>
+							<Button onClick={this.handleSubmit} type="submit" variant="dark">Register Customer</Button>
+							<br />
+							<br />
+              <Button onClick={this.handleReset} type="reset">Reset Input</Button>
+						</Form>
+					</Card.Body>
+				</Card>
 			</>
 		);
 	};

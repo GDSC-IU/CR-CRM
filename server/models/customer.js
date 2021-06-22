@@ -56,11 +56,11 @@ const mongoose = require('mongoose'),
             type: String, 
             required: true 
         }, 
-        joindate: {  
+        joinDate: {  
             type: Date, 
             required: true 
         }, 
-        activedate: {  
+        activeDate: {  
             type: Date, 
             required: true 
         }, 
