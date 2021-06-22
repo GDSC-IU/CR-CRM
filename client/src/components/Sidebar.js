@@ -57,13 +57,13 @@ class Sidebar extends React.Component {
                     </Link>
 									</Nav.Item>
 									<Nav.Item>
-										<Link className="navbar-brand space" to="/" style={{marginRight: "0px", border: ".5px solid #353935", width: "100%", borderRadius: "3px", padding: "15px 15px"}}>{this.state.user.compName}</Link>
+										<Link className="navbar-brand space" to={`/profile/${this.props.match.params.compID}`} style={{marginRight: "0px", border: ".5px solid #353935", width: "100%", borderRadius: "3px", padding: "15px 15px"}}>{this.state.user.compName}</Link>
 									</Nav.Item>
 									<Nav.Item>
 										<Link className="nav-item space" to={`/profile/${this.props.match.params.compID}/cust-Reg`}>Add Customer &#9755;</Link>
 									</Nav.Item>
 									<Nav.Item>
-										<Link className="nav-item space" to="/">Add Employee &#9755;</Link>
+										<Link className="nav-item space" to={`/profile/${this.props.match.params.compID}/emp-Reg`}>Add Employee &#9755;</Link>
 									</Nav.Item>
 									<Nav.Item>
 										<Link className="nav-item space" to="/">Update Details &#9755;</Link>

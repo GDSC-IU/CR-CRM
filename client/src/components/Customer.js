@@ -125,14 +125,14 @@ class Customer extends Component {
             <Form>
 							<Form.Group as={Row}>
 								<Form.Label as={Col} md={3}>Company ID</Form.Label>
-								<Col md={9}>
+								<Col md={4}>
 									<Form.Control value={this.state.value} style={{cursor: "not-allowed"}} placeholder={this.props.user.compID} readOnly />
 								</Col>
 							</Form.Group>
               <Form.Group as={Row}>
                 <Form.Label as={Col} md={3}>Full Name</Form.Label>
 								<Col md={9}>
-                	<Form.Control value={this.state.value} name="custName" onChange={this.handleInputChange} type="text" placeholder="First name  Middle Name  Last Name" />
+                	<Form.Control value={this.state.value} name="custName" onChange={this.handleInputChange} type="text" placeholder="First Middle Last Name" />
                 </Col>
               </Form.Group>
 							<Form.Group as={Row}>
@@ -185,7 +185,7 @@ class Customer extends Component {
 							</Form.Group>
 							<Form.Group as={Row}>
 								<Form.Label as={Col} md={3}>Status</Form.Label>
-								<Col md={9}>	
+								<Col md={4}>
 									<Form.Control value={this.state.value} as="select" name="custStatus" onChange={this.handleInputChange} defaultValue="active">
 										<option value="active">Active</option>
 										<option value="inactive">Inactive</option>

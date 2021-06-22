@@ -62,13 +62,19 @@ nav {
 }
 
 .inner-form {
-    width: 70%;
+    max-width: 850px;
+    width: 80%;
     margin: auto;
     background: #ffffff;
     box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
     padding: 35px 50px 35px 50px;
     border-radius: 15px;
     transition: all .3s;
+}
+
+.inner-form .form-control:focus {
+    border-color: #167bff;
+    box-shadow: none;
 }
 
 @media (max-width: 700px) {
@@ -78,7 +84,7 @@ nav {
     }
 
     .inner-form {
-        width: 100%;
-        padding: 20px 35px 20px 35px;
+        width: 90%;
+        padding: 15px 30px 15px 30px;
     }
 }
