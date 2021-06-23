@@ -3,6 +3,13 @@ import { Container, Row, Col, Table, Button } from 'react-bootstrap';
 
 class Dashboard extends React.Component {
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      compID: this.props.user.compID
+    }
+  }
 
   render() {
     return(
@@ -22,7 +29,7 @@ class Dashboard extends React.Component {
           <br />
           <br />
           <Row>
-            <Table striped bordered hover variant="dark">
+            <Table striped bordered responsive hover variant="dark">
               <thead>
                 <tr>
                   <th>#</th>

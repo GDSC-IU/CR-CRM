@@ -1,12 +1,12 @@
 import React from 'react';
-import { Container, Row, Col, Navbar, Nav} from 'react-bootstrap';
+import { Container, Row, Col, Navbar, Nav, Modal, Button} from 'react-bootstrap';
 import '../style/sidebar.css';
 import { Switch, Route, Link } from 'react-router-dom';
 import Employee from './Employee';
 import Customer from './Customer';
 import panda from '../assets/panda.png';
 import Dashboard from './Dashboard';
-var Confirm = require('react-confirm-bootstrap');
+
 
 class Sidebar extends React.Component {
 
@@ -15,9 +15,11 @@ class Sidebar extends React.Component {
 
 		this.state = {
       user: '',
-      compID: this.props.match.params.compID
+      compID: this.props.match.params.compID,
+      delModalShow: false
     }
-  
+    
+    this.modalHide = this.modalHide.bind(this);
 	}
 
   componentDidMount() {
@@ -42,10 +44,52 @@ class Sidebar extends React.Component {
     }    
   }
 
+  modalHide () {
+    this.setState({
+      delModalShow: false
+    })
+  }
+
+  async deleteCompany() {
+    try {
+      await fetch(`http://localhost:8080/profile/${this.state.compID}`, {
+        method: 'DELETE',
+        header: {'Content-Type': 'application/json'}
+      });
+      this.setState({delModalShow: false});
+      alert('Company Deleted!!');
+      this.props.history.push('/register');
+    }
+    catch (err) {
+      console.log(err);
+    }
+  }
+
   render() {
 
     return (
       <>
+
+        <Modal show={this.state.delModalShow} compID={this.state.compID} size="lg" centered onHide={this.modalHide}>
+          <Modal.Header style={{backgroundColor: "#007bff", color: "white"}} closeButton>
+            <Modal.Title>Confirmation</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <p>
+              This change can't be reversed.
+              <br />
+              All your data will be wiped out.
+              <br />
+              <br />
+              <strong>Are you sure you want to delete?</strong>
+            </p>
+          </Modal.Body>
+          <Modal.Footer style={{backgroundColor: "#007bff", color: "white"}}>
+            <Button style={{width: "12%"}} variant="secondary" onClick={this.modalHide}>No</Button>
+            <Button style={{width: "12%"}} variant="danger" onClick={this.deleteCompany}>Confirm</Button>
+          </Modal.Footer>
+        </Modal>
+
         <Container fluid>
           <Row>
             <Col sm={2} variant="dark" className="bg-primary m-0" id="sidebar-wrapper">
@@ -73,14 +117,14 @@ class Sidebar extends React.Component {
 										<Link className="nav-item space" to="/login">Logout  &#9755;</Link>
 									</Nav.Item>
 									<Nav.Item>
-										<Link className="nav-item space" to="/">Delete Account  &#9755;</Link>
+										<Button className="nav-item space" onClick={() => this.setState({delModalShow: true})}>Delete Account  &#9755;</Button>
 									</Nav.Item>
 								</Nav>
 							</Navbar>
             </Col>
             <Col  sm={10} className="inner-form" id="page-content-wrapper">
               <Switch>
-                <Route path='/profile/:compID' exact render={() => <Dashboard />} />
+                <Route exact path='/profile/:compID' exact render={() => <Dashboard user={this.state.user} />} />
                 <Route path={`/profile/${this.props.match.params.compID}/cust-Reg`}
                   render={() => <Customer user={this.state.user} />} 
                 />

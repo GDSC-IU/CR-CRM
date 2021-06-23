@@ -128,5 +128,16 @@ app.get('/custs', async (req, res) => {
     }
 });
 
+app.delete('/profile/:custID', async (req, res) => {
+    try {
+        const user = await company.findByIdAndDelete(req.params.custID);
+        if (!user) res.status(404).send('No user found');
+        res.status(200).send();
+    }
+    catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+});
 
 module.exports = app;
