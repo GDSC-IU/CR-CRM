@@ -6,6 +6,7 @@ import Employee from './Employee';
 import Customer from './Customer';
 import panda from '../assets/panda.png';
 import Dashboard from './Dashboard';
+var Confirm = require('react-confirm-bootstrap');
 
 class Sidebar extends React.Component {
 
@@ -69,7 +70,7 @@ class Sidebar extends React.Component {
 										<Link className="nav-item space" to="/">Update Details &#9755;</Link>
 									</Nav.Item>
 									<Nav.Item>
-										<Link className="nav-item space" to="/">Logout  &#9755;</Link>
+										<Link className="nav-item space" to="/login">Logout  &#9755;</Link>
 									</Nav.Item>
 									<Nav.Item>
 										<Link className="nav-item space" to="/">Delete Account  &#9755;</Link>
@@ -86,6 +87,7 @@ class Sidebar extends React.Component {
                 <Route path={`/profile/${this.props.match.params.compID}/emp-Reg`}
                   render={() => <Employee user={this.state.user} />} 
                 />
+                {/* <Route path={``} component={} /> */}
               </Switch>
             </Col> 
           </Row>
