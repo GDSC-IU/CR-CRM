@@ -69,7 +69,6 @@ class Sidebar extends React.Component {
 
     return (
       <>
-
         <Modal show={this.state.delModalShow} size="lg" centered onHide={this.modalHide}>
           <Modal.Header style={{backgroundColor: "#007bff", color: "white"}} closeButton>
             <Modal.Title>Confirmation</Modal.Title>
@@ -102,7 +101,7 @@ class Sidebar extends React.Component {
                     </Link>
 									</Nav.Item>
 									<Nav.Item>
-										<Link className="navbar-brand space" to={`/profile/${this.props.match.params.compID}`} style={{marginRight: "0px", border: ".5px solid #353935", width: "100%", borderRadius: "3px", padding: "15px 15px"}}>{this.state.user.compName}</Link>
+										<Link className="navbar-brand space" to={`/profile/${this.props.match.params.compID}/dashboard`} style={{marginRight: "0px", border: ".5px solid #353935", width: "100%", borderRadius: "3px", padding: "15px 15px"}}>{this.state.user.compName}</Link>
 									</Nav.Item>
 									<Nav.Item>
 										<Link className="nav-item space" to={`/profile/${this.props.match.params.compID}/cust-Reg`}>Add Customer &#9755;</Link>
@@ -124,7 +123,7 @@ class Sidebar extends React.Component {
             </Col>
             <Col  sm={10} className="inner-form" id="page-content-wrapper">
               <Switch>
-                <Route exact path={`/profile/${this.props.match.params.compID}`} render={() => <Dashboard user={this.state.user} />} />
+                <Route path={`/profile/${this.props.match.params.compID}/dashboard`} render={() => <Dashboard user={this.state.user} />} />
                 <Route path={`/profile/${this.props.match.params.compID}/cust-Reg`}
                   render={() => <Customer user={this.state.user} />} 
                 />

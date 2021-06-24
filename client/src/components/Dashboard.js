@@ -17,7 +17,7 @@ class Dashboard extends React.Component {
   }
 
   async loadData() {
-    // console.log(this.props.user.compID);
+    console.log(this.state);
     try {
       const res = await fetch(`http://localhost:8080/profile/${this.state.compID}`, {
         method: 'GET',
@@ -32,6 +32,20 @@ class Dashboard extends React.Component {
     }
   }
 
+  async deleteCustomer(custID) {
+    console.log(custID);
+    try {
+      await fetch(`http://localhost:8080/profile/${this.props.user.compID}/delCust/${custID}`, {
+        method: 'DELETE',
+        header: {'Content-Type': 'application/json'}
+      });
+      alert('Customer Deleted!!');
+    }
+    catch (err) {
+      console.log(err);
+    }
+  }
+
   render() {
     let num = 0;
     const customers = this.state.customers.map((customer) => (
@@ -42,9 +56,9 @@ class Dashboard extends React.Component {
           <td>{customer.custStatus}</td>
           <td>{customer.custPhn}</td>
           <td>{customer.custEmail}</td>
-          <td><Button>Message</Button></td>
-          <td><Button>Edit</Button></td>
-          <td><Button>Delete</Button></td>
+          <td><Button>💬</Button></td>
+          <td><Button variant="success">🖊️</Button></td>
+          <td><Button variant="danger" onClick={() => this.deleteCustomer(customer.custID)}>🗑️</Button></td>
       </tr>
     ));
 
@@ -53,13 +67,13 @@ class Dashboard extends React.Component {
         <Container>
           <Row>
             <Col md={4}>
-              <h4>Number of Employees : 30</h4>
+              <h4>Total Employees : 30</h4>
             </Col>
             <Col md={4}>
-              <h4>Number of Customer : {this.state.customers.length}</h4>
+              <h4>Total Customer : {this.state.customers.length}</h4>
             </Col>
             <Col md={4}>
-              <h4>Number of Messages : 30</h4>
+              <h4>Total Messages : 10</h4>
             </Col>
           </Row>
           <br />
@@ -80,38 +94,6 @@ class Dashboard extends React.Component {
                 </tr>
               </thead>
               <tbody>
-                {/* <tr>
-                  <td>1</td>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                  <td>12345</td>
-                  <td>abc</td>
-                  <td><Button>Message</Button></td>
-                  <td><Button>Edit</Button></td>
-                  <td><Button>Delete</Button></td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                  <td>@fat</td>
-                  <td>12345</td>
-                  <td>abc</td>
-                  <td><Button>Message</Button></td>
-                  <td><Button>Edit</Button></td>
-                  <td><Button>Delete</Button></td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td colSpan="2">Larry the Bird</td>
-                  <td>@twitter</td>
-                  <td>12345</td>
-                  <td>abc</td>
-                  <td><Button>Message</Button></td>
-                  <td><Button>Edit</Button></td>
-                  <td><Button>Delete</Button></td>
-                </tr> */}
                 {customers}
               </tbody>
             </Table>
@@ -121,6 +103,7 @@ class Dashboard extends React.Component {
             <a href="/" >View More</a>
             </Col>
           </Row>
+          
         </Container>
       </>
     );

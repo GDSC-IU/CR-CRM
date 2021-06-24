@@ -77,6 +77,12 @@ nav {
     box-shadow: none;
 }
 
+.view {
+    display: block;
+    float: left;
+    padding: 30px;
+}
+
 @media (max-width: 700px) {
     .inner {
         width: 80%;

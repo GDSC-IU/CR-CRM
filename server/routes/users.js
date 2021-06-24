@@ -119,7 +119,7 @@ app.post('/addCust', async (req, res) => {
 
 app.get('/profile/:compID', async (req, res) => {
     try {    
-        console.log(req.params);
+        // console.log(req.params);
         const users = await customer.find({compID: req.params.compID});
         res.status(200).send(users);
     }
@@ -144,6 +144,22 @@ app.delete('/profile/:compID', async (req, res) => {
         res.status(200).send();
     }
     catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+});
+
+
+app.delete('http://localhost:8080/profile/:compID/delCust/:custID', async (req, res) => {
+    try {
+        const cust = await customer.deleteOne({custID: req.params.custID});
+        if (!cust) res.status(404).send('Customer already Delted');
+
+        cust = await message.deleteMany({custID: req.params.custID});
+
+        res.status(200).send();
+    }
+    catch(err) {
         console.log(err);
         res.status(500).send(err);
     }
