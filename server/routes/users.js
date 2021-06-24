@@ -117,9 +117,10 @@ app.post('/addCust', async (req, res) => {
 });
 
 
-app.get('/custs', async (req, res) => {
+app.get('/profile/:compID', async (req, res) => {
     try {    
-        const users = await customer.find({});
+        console.log(req.params);
+        const users = await customer.find({compID: req.params.compID});
         res.status(200).send(users);
     }
     catch(err) {
@@ -128,18 +129,18 @@ app.get('/custs', async (req, res) => {
     }
 });
 
-app.delete('/profile/:custID', async (req, res) => {
+app.delete('/profile/:compID', async (req, res) => {
     try {
-        const user = await company.deleteOne({compID: req.params.custID});
+        const user = await company.deleteOne({compID: req.params.compID});
         if (!user) res.status(404).send('No user found');
 
-        user = await employee.deleteMany({compID: req.params.custID});
+        user = await employee.deleteMany({compID: req.params.compID});
         if (!user) res.status(404).send('No user found');
         
-        user = await customer.deleteMany({compID: req.params.custID});
+        user = await customer.deleteMany({compID: req.params.compID});
         // if (!user) res.status(404).send('No user found');
         
-        user = await customer.deleteMany({compID: req.params.custID});
+        user = await customer.deleteMany({compID: req.params.compID});
         res.status(200).send();
     }
     catch (err) {
@@ -147,5 +148,6 @@ app.delete('/profile/:custID', async (req, res) => {
         res.status(500).send(err);
     }
 });
+
 
 module.exports = app;

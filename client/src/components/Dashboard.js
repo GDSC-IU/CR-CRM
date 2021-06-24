@@ -7,13 +7,25 @@ class Dashboard extends React.Component {
     super(props);
 
     this.state = {
+      customers: [],
       compID: this.props.user.compID
     }
   }
 
-  async loadData() {
-    try {
+  componentDidMount() {
+    this.loadData();
+  }
 
+  async loadData() {
+    // console.log(this.props.user.compID);
+    try {
+      const res = await fetch(`http://localhost:8080/profile/${this.state.compID}`, {
+        method: 'GET',
+        headers: {'Content-Type': 'application/json'}
+      });
+      const result = await res.json();
+      console.log(result);
+      this.setState({customers: result});
     }
     catch(err) {
       console.log(err);
@@ -21,15 +33,30 @@ class Dashboard extends React.Component {
   }
 
   render() {
+    let num = 0;
+    const customers = this.state.customers.map((customer) => (
+        <tr key={customer.custID}>
+          <td>{++num}</td>
+          <td>{customer.custName}</td>
+          <td>{customer.custUsername}</td>
+          <td>{customer.custStatus}</td>
+          <td>{customer.custPhn}</td>
+          <td>{customer.custEmail}</td>
+          <td><Button>Message</Button></td>
+          <td><Button>Edit</Button></td>
+          <td><Button>Delete</Button></td>
+      </tr>
+    ));
+
     return(
       <>
         <Container>
           <Row>
             <Col md={4}>
-              <h4>Number of Employees : {this.state.compID}</h4>
+              <h4>Number of Employees : 30</h4>
             </Col>
             <Col md={4}>
-              <h4>Number of Customer : 30</h4>
+              <h4>Number of Customer : {this.state.customers.length}</h4>
             </Col>
             <Col md={4}>
               <h4>Number of Messages : 30</h4>
@@ -42,8 +69,8 @@ class Dashboard extends React.Component {
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>First Name</th>
-                  <th>DOB</th>
+                  <th>Name</th>
+                  <th>Username</th>
                   <th>Status</th>
                   <th>Phone No</th>
                   <th>Email</th>
@@ -53,7 +80,7 @@ class Dashboard extends React.Component {
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                {/* <tr>
                   <td>1</td>
                   <td>Mark</td>
                   <td>Otto</td>
@@ -84,7 +111,8 @@ class Dashboard extends React.Component {
                   <td><Button>Message</Button></td>
                   <td><Button>Edit</Button></td>
                   <td><Button>Delete</Button></td>
-                </tr>
+                </tr> */}
+                {customers}
               </tbody>
             </Table>
           </Row>
