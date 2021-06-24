@@ -135,7 +135,7 @@ app.delete('/profile/:custID', async (req, res) => {
         user = await employee.deleteMany({compID: req.params.custID});
         if (!user) res.status(404).send('No user found');
         user = await customer.deleteMany({compID: req.params.custID});
-        if (!user) res.status(404).send('No user found');
+        // if (!user) res.status(404).send('No user found');
         res.status(200).send();
     }
     catch (err) {
