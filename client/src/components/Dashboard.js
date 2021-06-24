@@ -11,13 +11,22 @@ class Dashboard extends React.Component {
     }
   }
 
+  async loadData() {
+    try {
+
+    }
+    catch(err) {
+      console.log(err);
+    }
+  }
+
   render() {
     return(
       <>
         <Container>
           <Row>
             <Col md={4}>
-              <h4>Number of Employees : 30</h4>
+              <h4>Number of Employees : {this.state.compID}</h4>
             </Col>
             <Col md={4}>
               <h4>Number of Customer : 30</h4>

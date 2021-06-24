@@ -1,7 +1,11 @@
 const mongoose = require('mongoose'),
       msgSchema = new mongoose.Schema({
+        compID: {
+            type: Number,
+            required: true
+        },
         custId: {
-            type: String,
+            type: Number,
             required: true
         },
         msgDate: { 
@@ -16,9 +20,6 @@ const mongoose = require('mongoose'),
             type: String, 
             required: true 
         }, 
-        // status: {
-        //     type: Boolean 
-        // } 
       });
 
 
