@@ -50,13 +50,13 @@ class Sidebar extends React.Component {
     })
   }
 
-  async deleteCompany() {
+  async deleteCompany(compID) {
+    // this.setState({delModalShow: false});
     try {
-      await fetch(`http://localhost:8080/profile/${this.state.compID}`, {
+      await fetch(`http://localhost:8080/profile/${compID}`, {
         method: 'DELETE',
         header: {'Content-Type': 'application/json'}
       });
-      this.setState({delModalShow: false});
       alert('Company Deleted!!');
       this.props.history.push('/register');
     }
@@ -70,7 +70,7 @@ class Sidebar extends React.Component {
     return (
       <>
 
-        <Modal show={this.state.delModalShow} compID={this.state.compID} size="lg" centered onHide={this.modalHide}>
+        <Modal show={this.state.delModalShow} size="lg" centered onHide={this.modalHide}>
           <Modal.Header style={{backgroundColor: "#007bff", color: "white"}} closeButton>
             <Modal.Title>Confirmation</Modal.Title>
           </Modal.Header>
@@ -86,7 +86,7 @@ class Sidebar extends React.Component {
           </Modal.Body>
           <Modal.Footer style={{backgroundColor: "#007bff", color: "white"}}>
             <Button style={{width: "12%"}} variant="secondary" onClick={this.modalHide}>No</Button>
-            <Button style={{width: "12%"}} variant="danger" onClick={this.deleteCompany}>Confirm</Button>
+            <Button style={{width: "12%"}} variant="danger" onClick={() => this.deleteCompany(this.state.compID)}>Confirm</Button>
           </Modal.Footer>
         </Modal>
 
@@ -124,7 +124,7 @@ class Sidebar extends React.Component {
             </Col>
             <Col  sm={10} className="inner-form" id="page-content-wrapper">
               <Switch>
-                <Route exact path='/profile/:compID' exact render={() => <Dashboard user={this.state.user} />} />
+                <Route exact path={`/profile/${this.props.match.params.compID}`} render={() => <Dashboard user={this.state.user} />} />
                 <Route path={`/profile/${this.props.match.params.compID}/cust-Reg`}
                   render={() => <Customer user={this.state.user} />} 
                 />
