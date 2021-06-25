@@ -37,8 +37,7 @@ class Dashboard extends React.Component {
       await fetch(`http://localhost:8080/profile/${this.props.user.compID}/delCust/${custID}`, {
         method: 'DELETE',
         header: {
-          'access-control-allow-origin' : '*',
-          'Content-Type': 'application/json; charset=UTF-8'
+          'Content-Type': 'application/json'
         },
       });
       alert('Customer Deleted!!');

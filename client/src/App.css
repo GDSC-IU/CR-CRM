@@ -83,6 +83,10 @@ nav {
     padding: 30px;
 }
 
+.jumbotron {
+    margin-bottom: 0px;
+}
+
 @media (max-width: 700px) {
     .inner {
         width: 80%;

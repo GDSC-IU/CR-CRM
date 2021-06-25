@@ -6,6 +6,7 @@ import Employee from './Employee';
 import Customer from './Customer';
 import panda from '../assets/panda.png';
 import Dashboard from './Dashboard';
+import Welcome from './Welcome';
 
 
 class Sidebar extends React.Component {
@@ -123,6 +124,7 @@ class Sidebar extends React.Component {
             </Col>
             <Col  sm={10} className="inner-form" id="page-content-wrapper">
               <Switch>
+                <Route exact path={`/profile/${this.props.match.params.compID}`} render={() => <Welcome id={this.props.match.params.compID} />} />
                 <Route path={`/profile/${this.props.match.params.compID}/dashboard`} render={() => <Dashboard user={this.state.user} />} />
                 <Route path={`/profile/${this.props.match.params.compID}/cust-Reg`}
                   render={() => <Customer user={this.state.user} />} 
