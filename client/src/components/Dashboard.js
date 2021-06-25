@@ -17,14 +17,14 @@ class Dashboard extends React.Component {
   }
 
   async loadData() {
-    console.log(this.state);
+    // console.log(this.state);
     try {
       const res = await fetch(`http://localhost:8080/profile/${this.state.compID}`, {
         method: 'GET',
         headers: {'Content-Type': 'application/json'}
       });
       const result = await res.json();
-      console.log(result);
+      // console.log(result);
       this.setState({customers: result});
     }
     catch(err) {
@@ -33,11 +33,13 @@ class Dashboard extends React.Component {
   }
 
   async deleteCustomer(custID) {
-    console.log(custID);
     try {
       await fetch(`http://localhost:8080/profile/${this.props.user.compID}/delCust/${custID}`, {
         method: 'DELETE',
-        header: {'Content-Type': 'application/json'}
+        header: {
+          'access-control-allow-origin' : '*',
+          'Content-Type': 'application/json; charset=UTF-8'
+        },
       });
       alert('Customer Deleted!!');
     }

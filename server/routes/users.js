@@ -120,7 +120,7 @@ app.post('/addCust', async (req, res) => {
 app.get('/profile/:compID', async (req, res) => {
     try {    
         // console.log(req.params);
-        const users = await customer.find({compID: req.params.compID});
+        const users = await customer.find({compID: req.params.compID}).limit(7);
         res.status(200).send(users);
     }
     catch(err) {
