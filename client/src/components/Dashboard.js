@@ -1,5 +1,6 @@
 import React from 'react';
-import { Container, Row, Col, Table, Button } from 'react-bootstrap';
+import { Container, Row, Col, Table, Button, Image } from 'react-bootstrap';
+import office from '../assets/office_env.jpg';
 
 class Dashboard extends React.Component {
 
@@ -67,14 +68,31 @@ class Dashboard extends React.Component {
       <>
         <Container>
           <Row>
+            <Col className="main">
+              <Image rounded fluid src={office} alt='office-img' />
+              <div className="info">
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer
+               took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,
+                but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s
+               with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing 
+               software like Aldus PageMaker including versions of Lorem Ipsum
+                </p>
+              </div>
+            </Col>
+          </Row>
+          <Row>
+
+          </Row>
+          <Row>
             <Col md={4}>
-              <h4>Total Employees : 30</h4>
+              <h4>Total Employees : 1</h4>
             </Col>
             <Col md={4}>
               <h4>Total Customer : {this.state.customers.length}</h4>
             </Col>
             <Col md={4}>
-              <h4>Total Messages : 10</h4>
+              <h4>Total Messages : 0</h4>
             </Col>
           </Row>
           <br />
@@ -104,7 +122,24 @@ class Dashboard extends React.Component {
             <a href="/" >View More</a>
             </Col>
           </Row>
-          
+          <Row className="mt-5">  
+            <Col md={3} className="view text-secondary">
+              <h3 className="">2.7K</h3>
+              <p className="leading-relaxed">Number of people visited website</p>
+            </Col>
+            <Col md={3} className="view text-secondary">
+              <h3 className="">1.8K</h3>
+              <p className="leading-relaxed">Number of satisfied customer</p>
+            </Col>
+            <Col md={3} className="view text-secondary">
+              <h3 className="">35</h3>
+              <p className="leading-relaxed">Number of projects running</p>
+            </Col>
+            <Col md={3} className="view text-secondary">
+              <h3 className="">4</h3>
+              <p className="leading-relaxed">Awards</p>
+            </Col>
+          </Row>
         </Container>
       </>
     );

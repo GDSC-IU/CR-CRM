@@ -78,13 +78,25 @@ nav {
 }
 
 .view {
-    display: block;
-    float: left;
-    padding: 30px;
+    font-size: 0.72rem;
 }
 
 .jumbotron {
     margin-bottom: 0px;
+}
+
+.main {
+    display: block;
+    float: left;
+}
+
+.info {
+    padding: 30px;
+    text-align: justify;
+}
+
+table {
+    max-width: 750px;
 }
 
 @media (max-width: 700px) {

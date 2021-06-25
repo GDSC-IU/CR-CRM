@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col, Navbar, Nav, Modal, Button} from 'react-bootstrap';
+import { Container, Row, Col, Navbar, Nav, Modal, Button } from 'react-bootstrap';
 import '../style/sidebar.css';
 import { Switch, Route, Link } from 'react-router-dom';
 import Employee from './Employee';
@@ -92,7 +92,7 @@ class Sidebar extends React.Component {
 
         <Container fluid>
           <Row>
-            <Col sm={2} variant="dark" className="bg-primary m-0" id="sidebar-wrapper">
+            <Col md={2} variant="dark" className="bg-primary m-0" id="sidebar-wrapper">
               <Navbar bg="primary" className="flex-column" variant="dark">
 								<Nav className="flex-column sidebar" variant="dark">
 									<Nav.Item style={{marginBottom: "1rem", textAlign: "center"}}>
@@ -122,7 +122,7 @@ class Sidebar extends React.Component {
 								</Nav>
 							</Navbar>
             </Col>
-            <Col  sm={10} className="inner-form" id="page-content-wrapper">
+            <Col  md={10} className="inner-form" id="page-content-wrapper">
               <Switch>
                 <Route exact path={`/profile/${this.props.match.params.compID}`} render={() => <Welcome id={this.props.match.params.compID} />} />
                 <Route path={`/profile/${this.props.match.params.compID}/dashboard`} render={() => <Dashboard user={this.state.user} />} />
@@ -134,7 +134,13 @@ class Sidebar extends React.Component {
                 />
                 {/* <Route path={``} component={} /> */}
               </Switch>
-            </Col> 
+            </Col>
+          </Row>
+          <Row className="mt-0">
+            <Col xs={2} className="bg-primary"></Col>
+            <footer xs={10} as={Col} className="mx-auto">
+              <p className="text-center text-secondary font-weight-bold mt-2">&copy; 2021 Bhavesh, Binal @OverseasITSolutions</p>
+            </footer>
           </Row>
         </Container>
       </>
