@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col, Table, Button, Image } from 'react-bootstrap';
+import { Container, Row, Col, Table, Button, Image, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import office from '../assets/office_env.jpg';
 
 class Dashboard extends React.Component {
@@ -58,9 +58,33 @@ class Dashboard extends React.Component {
           <td>{customer.custStatus}</td>
           <td>{customer.custPhn}</td>
           <td>{customer.custEmail}</td>
-          <td><Button>💬</Button></td>
-          <td><Button variant="success">🖊️</Button></td>
-          <td><Button variant="danger" onClick={() => this.deleteCustomer(customer.custID)}>🗑️</Button></td>
+          <td>
+            <OverlayTrigger key="top" placement="top" overlay={
+              <Tooltip id={`msg-tooltip-top`}>
+                Message
+              </Tooltip>
+            }>  
+              <Button>💬</Button>
+            </OverlayTrigger>
+          </td>
+          <td>
+            <OverlayTrigger key="top" placement="top" overlay={
+              <Tooltip id={`edit-tooltip-top`}>
+                Edit
+              </Tooltip>
+            }>  
+              <Button variant="success">🖊️</Button>
+            </OverlayTrigger>
+          </td>
+          <td>
+            <OverlayTrigger key="top" placement="top" overlay={
+              <Tooltip id={`del-tooltip-top`}>
+                Delete
+              </Tooltip>
+            }>  
+              <Button variant="danger" onClick={() => this.deleteCustomer(customer.custID)}>🗑️</Button>
+            </OverlayTrigger>
+          </td>
       </tr>
     ));
 
