@@ -25,13 +25,15 @@
     text-align: center;
     cursor: pointer;
     width: 100%;
-}
-.space:hover {
-    background-color: #3282ff;
-    color: #fff;
-    text-decoration: none;
-}
-.space {
     float: right;
     transition: .5s;
+}
+
+.space:hover {
+    border-radius: 10px;
+    color: #fff;
+    text-decoration: none;
+    background: #007bff; /*#3282ff*/
+    box-shadow: inset 28px 28px 56px #0051a8,
+                inset -28px -28px 56px #00a5ff;
 }
