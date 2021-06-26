@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form, Container, Row, Col } from 'react-bootstrap';
 import { Link, Switch, Route } from 'react-router-dom';
 import Navigation from './Navigation';
 import Register from './Register';
@@ -90,6 +90,13 @@ class Login extends Component {
             </p>
           </Form>
         </div>
+        <Container>
+          <Row className="mt-2">
+            <footer as={Col} className="mx-auto">
+              <p className="text-center text-secondary font-weight-bold mt-2">&copy; 2021 Bhavesh, Binal @OverseasITSolutions</p>
+            </footer>
+          </Row>
+        </Container>
         <Switch>
           <Route path="/register" component={Register} />
         </Switch>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Switch, Route, Link } from "react-router-dom";
 import Login from './Login';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import Navigation from './Navigation';
 
 class Register extends Component {
@@ -128,6 +128,13 @@ class Register extends Component {
             </p>
           </Form>
         </div>
+        <Container>
+          <Row className="mt-3">
+            <footer as={Col} className="mx-auto">
+              <p className="text-center text-secondary font-weight-bold mt-2">&copy; 2021 Bhavesh, Binal @OverseasITSolutions</p>
+            </footer>
+          </Row>
+        </Container>
         <Switch>
           <Route path="/login" component={Login} />
         </Switch> 
