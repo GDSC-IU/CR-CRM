@@ -131,7 +131,7 @@ class Register extends Component {
         <Container>
           <Row className="mt-3">
             <footer as={Col} className="mx-auto">
-              <p className="text-center text-secondary font-weight-bold mt-2">&copy; 2021 Bhavesh, Binal @OverseasITSolutions</p>
+              <p className="text-center text-secondary font-weight-bold mt-2">&copy; 2021 Bhavesh @OverseasITSolutions</p>
             </footer>
           </Row>
         </Container>

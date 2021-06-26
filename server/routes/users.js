@@ -150,7 +150,7 @@ app.delete('/profile/:compID', async (req, res) => {
 });
 
 
-app.delete('http://localhost:8080/profile/:compID/delCust/:custID', async (req, res) => {
+app.delete('/profile/:compID/delCust/:custID', async (req, res) => {
     try {
         const cust = await customer.deleteOne({custID: req.params.custID});
         if (!cust) res.status(404).send('Customer already Delted');

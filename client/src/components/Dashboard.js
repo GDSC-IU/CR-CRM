@@ -42,6 +42,8 @@ class Dashboard extends React.Component {
         },
       });
       alert('Customer Deleted!!');
+      // this.setState({ state: this.state});
+      window.location.reload(false);
     }
     catch (err) {
       console.log(err);

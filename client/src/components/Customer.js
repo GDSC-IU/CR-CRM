@@ -142,6 +142,15 @@ class Customer extends Component {
                 </Col>
               </Form.Group>
 							<Form.Group as={Row}>
+                <Form.Label as={Col} md={3}>Email</Form.Label>
+                <InputGroup as={Col} md={9}>
+									<InputGroup.Prepend>
+        					  <InputGroup.Text>@</InputGroup.Text>
+        					</InputGroup.Prepend>
+                	<Form.Control value={this.state.value} type="email" name="custEmail" onChange={this.handleInputChange} placeholder="Enter Email" />
+                </InputGroup>
+              </Form.Group>
+							<Form.Group as={Row}>
                 <Form.Label as={Col} md={3}>Date of Birth</Form.Label>
 								<Col md={9}>
                 	<Form.Control value={this.state.value} name="dob" onChange={this.handleInputChange} type="date" />
@@ -196,20 +205,13 @@ class Customer extends Component {
 							</Form.Group>
 							<Form.Group as={Row}>
 								<Form.Label as={Col} md={3}>Assign To</Form.Label>
-								<Col md={9} onChange={this.handleInputChange} key='inline-radio'>	
-									<Form.Check inline value="admin" label="Admin" name="assignto" type="radio" />
-									<Form.Check inline value="employee" label="Employee" name="assignto" type="radio" />
+								<Col md={4}>
+									<Form.Control value={this.state.value} as="select" name="assignto" onChange={this.handleInputChange} defaultValue="admin">
+										<option value="admin">Admin</option>
+										<option value="employee">Employee</option>
+									</Form.Control>
 								</Col>
 							</Form.Group>
-              <Form.Group as={Row}>
-                <Form.Label as={Col} md={3}>Email</Form.Label>
-                <InputGroup as={Col} md={9}>
-									<InputGroup.Prepend>
-        					  <InputGroup.Text>@</InputGroup.Text>
-        					</InputGroup.Prepend>
-                	<Form.Control value={this.state.value} type="email" name="custEmail" onChange={this.handleInputChange} placeholder="Enter Email" />
-                </InputGroup>
-              </Form.Group>
               <Form.Group as={Row}>
                 <Form.Label as={Col} md={3}>Password</Form.Label>
 								<Col md={9}>
