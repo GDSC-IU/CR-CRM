@@ -138,7 +138,7 @@ class Sidebar extends React.Component {
           <Row className="mt-0">
             <Col xs={2} className="bg-primary"></Col>
             <footer xs={10} as={Col} className="mx-auto">
-              <p className="text-center text-secondary font-weight-bold mt-2">&copy; 2021 Bhavesh, Binal @OverseasITSolutions</p>
+              <p className="text-center text-secondary font-weight-bold mt-2">&copy; 2021 Bhavesh @OverseasITSolutions</p>
             </footer>
           </Row>
         </Container>

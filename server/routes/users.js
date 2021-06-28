@@ -165,5 +165,17 @@ app.delete('/profile/:compID/delCust/:custID', async (req, res) => {
     }
 });
 
+app.post('/profile/:compID/snedMsg', async (req, res) => {
+    try {
+        const msg = new message(req.body);
+        await msg.save();
+        res.status(200).send(msg);
+    }
+    catch(err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+});
+
 
 module.exports = app;

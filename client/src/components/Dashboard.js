@@ -10,11 +10,20 @@ class Dashboard extends React.Component {
     this.state = {
       customers: [],
       compID: this.props.user.compID,
-      delModalShow: false
+      delModalShow: false,
+      msgTitle: '',
+      msg: ''
     }
 
     this.modalHide = this.modalHide.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
 
+  }
+
+  handleInputChange(event) {
+    const name = event.target.name;
+    const value = event.target.value;
+    this.setState({[name]: value});
   }
 
   modalHide () {
@@ -37,6 +46,22 @@ class Dashboard extends React.Component {
       const result = await res.json();
       // console.log(result);
       this.setState({customers: result});
+    }
+    catch(err) {
+      console.log(err);
+    }
+  }
+
+  async sendMsg() {
+    const { msgTitle, msg } = this.state;
+    try {
+      const res = await fetch(`http://localhost:8080/proflie/${this.state.compID}/sendMsg`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ msgTitle, msg }),
+      });
+      const result = await res.json();
+      console.log(result);
     }
     catch(err) {
       console.log(err);
