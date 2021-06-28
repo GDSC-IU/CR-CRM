@@ -132,7 +132,6 @@ class Sidebar extends React.Component {
                 <Route path={`/profile/${this.props.match.params.compID}/emp-Reg`}
                   render={() => <Employee user={this.state.user} />} 
                 />
-                {/* <Route path={``} component={} /> */}
               </Switch>
             </Col>
           </Row>

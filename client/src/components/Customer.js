@@ -91,7 +91,7 @@ class Customer extends Component {
 			console.log(result);
 			alert('Customer Registered!');
 
-			this.setState ({
+			this.setState (() => ({
 				custName: '',
 				custUsername: '',
 				custEmail: '',
@@ -107,7 +107,7 @@ class Customer extends Component {
 				activeDate: '',
 				endDate: '',
 				assignTo: ''
-			});
+			}));
 		}
 		catch(err) {
 			console.log(err);

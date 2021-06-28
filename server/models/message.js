@@ -16,7 +16,7 @@ const mongoose = require('mongoose'),
             type: String, 
             required: true 
         }, 
-        text: { 
+        msg: { 
             type: String, 
             required: true 
         }, 

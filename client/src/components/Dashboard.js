@@ -1,7 +1,6 @@
 import React from 'react';
-import { Container, Row, Col, Table, Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { Container, Row, Col, Table, Button, OverlayTrigger, Tooltip, Form, Modal } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom';
-// import office from '../assets/office_env.jpg';
 
 class Dashboard extends React.Component {
 
@@ -10,8 +9,18 @@ class Dashboard extends React.Component {
 
     this.state = {
       customers: [],
-      compID: this.props.user.compID
+      compID: this.props.user.compID,
+      delModalShow: false
     }
+
+    this.modalHide = this.modalHide.bind(this);
+
+  }
+
+  modalHide () {
+    this.setState({
+      delModalShow: false
+    })
   }
 
   componentDidMount() {
@@ -43,7 +52,7 @@ class Dashboard extends React.Component {
         },
       });
       alert('Customer Deleted!!');
-      // this.setState({ state: this.state});
+      this.setState(() => ({}));
       // window.location.reload(false);
     }
     catch (err) {
@@ -74,7 +83,7 @@ class Dashboard extends React.Component {
                 Message
               </Tooltip>
             }>  
-              <Button>💬</Button>
+              <Button onClick={() => this.setState({delModalShow: true})}>💬</Button>
             </OverlayTrigger>
           </td>
           <td>
@@ -104,7 +113,28 @@ class Dashboard extends React.Component {
 
     return(
       <>
-      {this.state.compID === undefined? <Redirect to='/login' />: console.log(this.state)}
+        <Modal show={this.state.delModalShow} size="md" centered onHide={this.modalHide}>
+          <Modal.Header style={{backgroundColor: "#007bff", color: "white"}} closeButton>
+            <Modal.Title>Send Message</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Form>
+              <Form.Group>
+                <Form.Label>Message Title</Form.Label>
+              	<Form.Control value={this.state.value} name="msgTitle" onChange={this.handleInputChange} type="text" placeholder="Title" />
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>Message</Form.Label>
+                <Form.Control name="msg" value={this.state.value} onChange={this.handleInputChange} as="textarea" rows={7} placeholder="Enter Your message..." />
+              </Form.Group>
+              <Button variant="secondary" onClick={this.modalHide}>No</Button>
+              <Button variant="success" type="submit" onClick={() => this.sendMsg()}>Send</Button>
+            </Form>
+          </Modal.Body>
+        </Modal>
+
+        {this.state.compID === undefined? <Redirect to='/login' />: console.log(this.state)}
+      
         <Container>
           <Row>
             {console.log('Return')}
@@ -144,7 +174,7 @@ class Dashboard extends React.Component {
           </Row>
           <Row>
             <Col style={{textAlign: "right"}}>
-            <a href="/" >View More</a>
+            <a href="/profile/" >View More</a>
             </Col>
           </Row>
           <Row className="mt-5">  
