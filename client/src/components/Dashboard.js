@@ -1,6 +1,7 @@
 import React from 'react';
-import { Container, Row, Col, Table, Button, Image, OverlayTrigger, Tooltip } from 'react-bootstrap';
-import office from '../assets/office_env.jpg';
+import { Container, Row, Col, Table, Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { Redirect } from 'react-router-dom';
+// import office from '../assets/office_env.jpg';
 
 class Dashboard extends React.Component {
 
@@ -43,7 +44,7 @@ class Dashboard extends React.Component {
       });
       alert('Customer Deleted!!');
       // this.setState({ state: this.state});
-      window.location.reload(false);
+      // window.location.reload(false);
     }
     catch (err) {
       console.log(err);
@@ -52,7 +53,14 @@ class Dashboard extends React.Component {
 
   render() {
     let num = 0;
-    const customers = this.state.customers.map((customer) => (
+    this.state.compID === undefined? <Redirect to='/login' />: console.log(this.state);
+    console.log(this.state);
+    
+    console.log('Render');
+    
+    let customers = [];
+    try {
+      customers = this.state.customers.map((customer) => (
         <tr key={customer.custID}>
           <td>{++num}</td>
           <td>{customer.custName}</td>
@@ -61,7 +69,7 @@ class Dashboard extends React.Component {
           <td>{customer.custPhn}</td>
           <td>{customer.custEmail}</td>
           <td>
-            <OverlayTrigger key="top" placement="top" overlay={
+            <OverlayTrigger key="msg-top" placement="top" overlay={
               <Tooltip id={`msg-tooltip-top`}>
                 Message
               </Tooltip>
@@ -70,7 +78,7 @@ class Dashboard extends React.Component {
             </OverlayTrigger>
           </td>
           <td>
-            <OverlayTrigger key="top" placement="top" overlay={
+            <OverlayTrigger key="edit-top" placement="top" overlay={
               <Tooltip id={`edit-tooltip-top`}>
                 Edit
               </Tooltip>
@@ -79,7 +87,7 @@ class Dashboard extends React.Component {
             </OverlayTrigger>
           </td>
           <td>
-            <OverlayTrigger key="top" placement="top" overlay={
+            <OverlayTrigger key="del-top" placement="top" overlay={
               <Tooltip id={`del-tooltip-top`}>
                 Delete
               </Tooltip>
@@ -87,28 +95,19 @@ class Dashboard extends React.Component {
               <Button variant="danger" onClick={() => this.deleteCustomer(customer.custID)}>🗑️</Button>
             </OverlayTrigger>
           </td>
-      </tr>
-    ));
+        </tr>
+      ));
+    }
+    catch (err) {
+      console.log(err);
+    }
 
     return(
       <>
+      {this.state.compID === undefined? <Redirect to='/login' />: console.log(this.state)}
         <Container>
           <Row>
-            <Col className="main">
-              <Image rounded fluid src={office} alt='office-img' />
-              <div className="info">
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer
-               took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,
-                but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s
-               with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing 
-               software like Aldus PageMaker including versions of Lorem Ipsum
-                </p>
-              </div>
-            </Col>
-          </Row>
-          <Row>
-
+            {console.log('Return')}
           </Row>
           <Row>
             <Col md={4}>
