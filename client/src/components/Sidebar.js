@@ -7,6 +7,7 @@ import Customer from './Customer';
 import panda from '../assets/panda.png';
 import Dashboard from './Dashboard';
 import Welcome from './Welcome';
+import UpdateCompany from './UpdateCompany';
 
 
 class Sidebar extends React.Component {
@@ -115,7 +116,7 @@ class Sidebar extends React.Component {
 										<Link className="nav-item space" to={`/profile/${this.props.match.params.compID}/emp-Reg`}>Add Employee &#9755;</Link>
 									</Nav.Item>
 									<Nav.Item>
-										<Link className="nav-item space" to="/">Update Details &#9755;</Link>
+										<Link className="nav-item space" to={`/profile/${this.props.match.params.compID}/updateDetail`}>Update Details &#9755;</Link>
 									</Nav.Item>
 									<Nav.Item>
 										<Link className="nav-item space" to="/login">Logout  &#9755;</Link>
@@ -128,8 +129,15 @@ class Sidebar extends React.Component {
             </Col>
             <Col  md={10} className="inner-form" id="page-content-wrapper">
               <Switch>
-                <Route exact path={`/profile/${this.props.match.params.compID}`} render={() => <Welcome id={this.props.match.params.compID} />} />
-                <Route path={`/profile/${this.props.match.params.compID}/dashboard`} render={() => <Dashboard user={this.state.user} />} />
+                <Route exact path={`/profile/${this.props.match.params.compID}`}
+                  render={() => <Welcome id={this.props.match.params.compID} />}
+                />
+                <Route path={`/profile/${this.props.match.params.compID}/dashboard`}
+                 render={() => <Dashboard user={this.state.user} />}
+                />
+                <Route path={`/profile/${this.props.match.params.compID}/updateDetail`}
+                  render={() => <UpdateCompany user={this.state.user} />}
+                />
                 <Route path={`/profile/${this.props.match.params.compID}/cust-Reg`}
                   render={() => <Customer user={this.state.user} />} 
                 />
