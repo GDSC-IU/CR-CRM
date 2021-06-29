@@ -15,7 +15,7 @@ class Dashboard extends React.Component {
       delModalShow: false,
       msgTitle: '',
       msg: '',
-      activeCust: '',
+      custId: '',
       msgDate: new Date()
     }
 
@@ -65,13 +65,13 @@ class Dashboard extends React.Component {
 
   async sendMsg() {
     // e.preventDefault();
-    const { compID, msgTitle, msg, msgDate } = this.state;
+    const { custId, compID, msgTitle, msg, msgDate } = this.state;
     console.log('before try catch');
     try {
       const res = await fetch(`http://localhost:8080/profile/${this.state.compID}/sendMsg`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({ compID, msgTitle, msg, msgDate }),
+        body: JSON.stringify({ custId, compID, msgTitle, msg, msgDate }),
       });
       const result = await res.json();
       console.log(result);
@@ -123,7 +123,7 @@ class Dashboard extends React.Component {
                 Message
               </Tooltip>
             }>  
-              <Button onClick={() => this.setState({delModalShow: true, activeCust: customer.custID})}>💬</Button>
+              <Button onClick={() => this.setState({delModalShow: true, custId: customer.custID})}>💬</Button>
             </OverlayTrigger>
           </td>
           <td>
