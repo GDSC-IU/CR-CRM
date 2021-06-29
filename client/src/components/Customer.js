@@ -21,7 +21,7 @@ class Customer extends Component {
 			joinDate: '',
 			activeDate: '',
 			endDate: '',
-			assignto: '',
+			assignto: 'employee',
 			custEmail: '',
 			custPwd: ''
 		};
@@ -106,7 +106,7 @@ class Customer extends Component {
 				joinDate: '',
 				activeDate: '',
 				endDate: '',
-				assignTo: ''
+				assignTo: 'employee'
 			}));
 		}
 		catch(err) {

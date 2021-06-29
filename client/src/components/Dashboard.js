@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Row, Col, Table, Button, OverlayTrigger, Tooltip, Form, Modal } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom';
+import * as Icon from 'react-bootstrap-icons';
 
 class Dashboard extends React.Component {
 
@@ -12,7 +13,8 @@ class Dashboard extends React.Component {
       compID: this.props.user.compID,
       delModalShow: false,
       msgTitle: '',
-      msg: ''
+      msg: '',
+      msgDate: new Date()
     }
 
     this.modalHide = this.modalHide.bind(this);
@@ -53,15 +55,22 @@ class Dashboard extends React.Component {
   }
 
   async sendMsg() {
-    const { msgTitle, msg } = this.state;
+    this.setState(() => ({
+      msgDate: new Date()
+    }));
+    const { compID, msgTitle, msg, msgDate } = this.state;
     try {
       const res = await fetch(`http://localhost:8080/proflie/${this.state.compID}/sendMsg`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({ msgTitle, msg }),
+        body: JSON.stringify({ compID, msgTitle, msg, msgDate }),
       });
       const result = await res.json();
       console.log(result);
+      this.setState(() => ({
+        msg: '',
+        msgTitle: ''
+      }));
     }
     catch(err) {
       console.log(err);
@@ -77,7 +86,7 @@ class Dashboard extends React.Component {
         },
       });
       alert('Customer Deleted!!');
-      this.setState(() => ({}));
+      this.loadData();
       // window.location.reload(false);
     }
     catch (err) {
@@ -87,8 +96,6 @@ class Dashboard extends React.Component {
 
   render() {
     let num = 0;
-    this.state.compID === undefined? <Redirect to='/login' />: console.log(this.state);
-    console.log(this.state);
     
     console.log('Render');
     
@@ -152,8 +159,10 @@ class Dashboard extends React.Component {
                 <Form.Label>Message</Form.Label>
                 <Form.Control name="msg" value={this.state.value} onChange={this.handleInputChange} as="textarea" rows={7} placeholder="Enter Your message..." />
               </Form.Group>
-              <Button variant="secondary" onClick={this.modalHide}>No</Button>
-              <Button variant="success" type="submit" onClick={() => this.sendMsg()}>Send</Button>
+              <Form.Group className="text-right">
+                <Button style={{marginRight: '1rem'}} variant="secondary" onClick={this.modalHide}>No</Button>
+                <Button variant="success" type="submit" onClick={() => this.sendMsg()}><Icon.CursorFill size={23} /></Button>
+              </Form.Group>
             </Form>
           </Modal.Body>
         </Modal>

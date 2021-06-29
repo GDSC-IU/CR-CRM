@@ -165,7 +165,7 @@ app.delete('/profile/:compID/delCust/:custID', async (req, res) => {
     }
 });
 
-app.post('/profile/:compID/snedMsg', async (req, res) => {
+app.post('/profile/:compID/sendMsg', async (req, res) => {
     try {
         const msg = new message(req.body);
         await msg.save();
