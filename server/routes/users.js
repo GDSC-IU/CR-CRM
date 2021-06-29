@@ -140,12 +140,12 @@ app.delete('/profile/:compID', async (req, res) => {
         user = await customer.deleteMany({compID: req.params.compID});
         // if (!user) res.status(404).send('No user found');
         
-        user = await customer.deleteMany({compID: req.params.compID});
+        user = await message.deleteMany({compID: req.params.compID});
         res.status(200).send();
     }
     catch (err) {
         console.log(err);
-        res.status(500).send(err);
+        res.status(303).send(err);
     }
 });
 
@@ -161,7 +161,7 @@ app.delete('/profile/:compID/delCust/:custID', async (req, res) => {
     }
     catch(err) {
         console.log(err);
-        res.status(500).send(err);
+        res.status(303).send(err);
     }
 });
 

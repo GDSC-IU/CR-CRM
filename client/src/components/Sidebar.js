@@ -62,7 +62,7 @@ class Sidebar extends React.Component {
         method: 'DELETE',
         header: {'Content-Type': 'application/json'}
       });
-      alert('Company Deleted!!');
+      // alert('Company Deleted!!');
       this.props.history.push('/register');
     }
     catch (err) {

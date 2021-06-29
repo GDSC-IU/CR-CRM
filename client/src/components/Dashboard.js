@@ -2,6 +2,7 @@ import React from 'react';
 import { Container, Row, Col, Table, Button, OverlayTrigger, Tooltip, Form, Modal } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom';
 import * as Icon from 'react-bootstrap-icons';
+// import Chart from './Chart';
 
 class Dashboard extends React.Component {
 
@@ -93,7 +94,7 @@ class Dashboard extends React.Component {
           'Content-Type': 'application/json'
         },
       });
-      alert('Customer Deleted!!');
+      // alert('Customer Deleted!!');
       this.loadData();
     }
     catch (err) {
@@ -183,6 +184,7 @@ class Dashboard extends React.Component {
         <Container>
           <Row>
             {console.log('Return')}
+            {/* <Col><Chart /></Col> */}
           </Row>
           <Row>
             <Col md={4}>

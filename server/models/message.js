@@ -6,7 +6,7 @@ const mongoose = require('mongoose'),
         },
         custId: {
             type: Number,
-            // required: true
+            required: true
         },
         msgDate: { 
             type: Date, 
