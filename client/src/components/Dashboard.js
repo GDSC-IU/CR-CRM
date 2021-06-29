@@ -14,11 +14,13 @@ class Dashboard extends React.Component {
       delModalShow: false,
       msgTitle: '',
       msg: '',
+      activeCust: '',
       msgDate: new Date()
     }
 
     this.modalHide = this.modalHide.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.send = this.send.bind(this);
 
   }
 
@@ -36,6 +38,7 @@ class Dashboard extends React.Component {
 
   componentDidMount() {
     this.loadData();
+    // console.log(this.state.compID + " " + this.props.user.compID);
   }
 
   async loadData() {
@@ -54,13 +57,17 @@ class Dashboard extends React.Component {
     }
   }
 
+  send(e) {
+    e.preventDefault();
+    this.sendMsg();
+  }
+
   async sendMsg() {
-    this.setState(() => ({
-      msgDate: new Date()
-    }));
+    // e.preventDefault();
     const { compID, msgTitle, msg, msgDate } = this.state;
+    console.log('before try catch');
     try {
-      const res = await fetch(`http://localhost:8080/proflie/${this.state.compID}/sendMsg`, {
+      const res = await fetch(`http://localhost:8080/profile/${this.state.compID}/sendMsg`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({ compID, msgTitle, msg, msgDate }),
@@ -69,7 +76,8 @@ class Dashboard extends React.Component {
       console.log(result);
       this.setState(() => ({
         msg: '',
-        msgTitle: ''
+        msgTitle: '',
+        delModalShow: false
       }));
     }
     catch(err) {
@@ -87,7 +95,6 @@ class Dashboard extends React.Component {
       });
       alert('Customer Deleted!!');
       this.loadData();
-      // window.location.reload(false);
     }
     catch (err) {
       console.log(err);
@@ -97,7 +104,7 @@ class Dashboard extends React.Component {
   render() {
     let num = 0;
     
-    console.log('Render');
+    console.log('Render' + this.state.compID + " " + this.props.user.compID );
     
     let customers = [];
     try {
@@ -115,7 +122,7 @@ class Dashboard extends React.Component {
                 Message
               </Tooltip>
             }>  
-              <Button onClick={() => this.setState({delModalShow: true})}>💬</Button>
+              <Button onClick={() => this.setState({delModalShow: true, activeCust: customer.custID})}>💬</Button>
             </OverlayTrigger>
           </td>
           <td>
@@ -152,6 +159,10 @@ class Dashboard extends React.Component {
           <Modal.Body>
             <Form>
               <Form.Group>
+                <Form.Label>Customer ID</Form.Label>
+                <Form.Control value={this.state.activeCust} style={{cursor: "not-allowed"}} readOnly />
+              </Form.Group>
+              <Form.Group>
                 <Form.Label>Message Title</Form.Label>
               	<Form.Control value={this.state.value} name="msgTitle" onChange={this.handleInputChange} type="text" placeholder="Title" />
               </Form.Group>
@@ -161,7 +172,7 @@ class Dashboard extends React.Component {
               </Form.Group>
               <Form.Group className="text-right">
                 <Button style={{marginRight: '1rem'}} variant="secondary" onClick={this.modalHide}>No</Button>
-                <Button variant="success" type="submit" onClick={() => this.sendMsg()}><Icon.CursorFill size={23} /></Button>
+                <Button variant="success" type="submit" onClick={this.send}><Icon.CursorFill size={23} /></Button>
               </Form.Group>
             </Form>
           </Modal.Body>

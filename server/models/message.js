@@ -2,7 +2,7 @@ const mongoose = require('mongoose'),
       msgSchema = new mongoose.Schema({
         compID: {
             type: Number,
-            // required: true
+            required: true
         },
         custId: {
             type: Number,
