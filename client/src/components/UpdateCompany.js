@@ -48,8 +48,9 @@ class UpdateCompany extends Component {
 			<>
 				<Container>
 					<Row>
-					<Col>
+						<Col>
 							<Form>
+								<h3>Update Company Details</h3>
 								<Form.Group>
 									
 								</Form.Group>
@@ -63,7 +64,7 @@ class UpdateCompany extends Component {
 									
 								</Form.Group>
 								<Form.Group>
-									<Button></Button>
+									<Button variant="success">Save Changes</Button>
 								</Form.Group>
 							</Form>
 						</Col>
