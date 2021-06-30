@@ -7,7 +7,7 @@ class UpdateCompany extends Component {
 		super(props);
 
 		this.state = {
-
+			company: this.props.user
 		}
 
 		this.handleChange = this.handleChange.bind(this);
@@ -15,8 +15,10 @@ class UpdateCompany extends Component {
 
 	}
 
-	handleChange() {
-
+	handleChange(e) {
+		const name = e.target.name,
+					value = e.target.value;
+		this.setState({[name]: value});
 	}
 
 	handleSubmit(e) {
@@ -63,8 +65,9 @@ class UpdateCompany extends Component {
 								<Form.Group>
 									
 								</Form.Group>
-								<Form.Group>
-									<Button variant="success">Save Changes</Button>
+								<Form.Group className="text-right">
+									<Button variant="danger" className="mr-2">Cancel</Button>
+									<Button variant="success" type="submit" onClick={this.handleSubmit}>Save Changes</Button>
 								</Form.Group>
 							</Form>
 						</Col>

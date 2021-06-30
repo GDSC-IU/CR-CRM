@@ -66,7 +66,7 @@ class Dashboard extends React.Component {
   async sendMsg() {
     // e.preventDefault();
     const { custId, compID, msgTitle, msg, msgDate } = this.state;
-    console.log('before try catch');
+    // console.log('before try catch');
     try {
       const res = await fetch(`http://localhost:8080/profile/${this.state.compID}/sendMsg`, {
         method: 'POST',

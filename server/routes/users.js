@@ -25,8 +25,7 @@ app.post('/comp', async (req, res) => {
         console.log(error);
         res.status(500).send(error);
     }
-});
-
+})
 
 app.get('/comps', async (req, res) => {
     try {    
@@ -37,8 +36,7 @@ app.get('/comps', async (req, res) => {
         console.log(err);
         res.status(500).send(err);
     }
-});
-
+})
 
 app.post('/emp', async (req, res) => {
     try {
@@ -50,8 +48,7 @@ app.post('/emp', async (req, res) => {
         console.log(error);
         res.status(500).send(error);
     }
-});
-
+})
 
 app.get('/emps', async (req, res) => {
     try {    
@@ -62,8 +59,7 @@ app.get('/emps', async (req, res) => {
         console.log(err);
         res.status(500).send(err);
     }
-});
-
+})
 
 app.post('/comp-auth', async (req, res) => {
     try {
@@ -78,8 +74,7 @@ app.post('/comp-auth', async (req, res) => {
         res.status(500).send(err);
     }
 
-});
-
+})
 
 app.post('/data-retrieve', async (req, res) => {
     try {
@@ -94,8 +89,7 @@ app.post('/data-retrieve', async (req, res) => {
         res.status(500).send(err);
     }
 
-});
-
+})
 
 app.post('/addCust', async (req, res) => {
     try {
@@ -114,8 +108,7 @@ app.post('/addCust', async (req, res) => {
         console.log(error);
         res.status(500).send(error);
     }
-});
-
+})
 
 app.get('/profile/:compID', async (req, res) => {
     try {    
@@ -127,7 +120,7 @@ app.get('/profile/:compID', async (req, res) => {
         console.log(err);
         res.status(500).send(err);
     }
-});
+})
 
 app.delete('/profile/:compID', async (req, res) => {
     try {
@@ -147,8 +140,7 @@ app.delete('/profile/:compID', async (req, res) => {
         console.log(err);
         res.status(303).send(err);
     }
-});
-
+})
 
 app.delete('/profile/:compID/delCust/:custID', async (req, res) => {
     try {
@@ -163,7 +155,7 @@ app.delete('/profile/:compID/delCust/:custID', async (req, res) => {
         console.log(err);
         res.status(303).send(err);
     }
-});
+})
 
 app.post('/profile/:compID/sendMsg', async (req, res) => {
     try {
@@ -177,7 +169,26 @@ app.post('/profile/:compID/sendMsg', async (req, res) => {
         console.log(err);
         res.status(500).send(err);
     }
-});
+})
 
+app.put('', async (req, res) => {
+	try {
+		
+	}
+	catch(err) {
+		console.log(err);
+		res.status(303).send(err);
+	}
+})
+
+app.put('', async (req, res) => {
+	try {
+
+	}
+	catch(err) {
+		console.log(err);
+		res.status(303).send(err);
+	}
+})
 
 module.exports = app;
