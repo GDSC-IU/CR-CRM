@@ -1,66 +1,39 @@
-import React, { Component } from 'react';
-import { Bar } from 'react-chartjs-2';
+import React from 'react';
+import {Bar} from 'react-chartjs-2';
 
-class Chart extends Component {
-    
-	constructor(props) {
-    super(props);
-        
-		this.state = {
-      charData: {
-        labels: ['Surat', 'Ahmedabad', 'Rajkot', 'Mumbai', 'Delhi', 'Hyderabad'],
-        datasets: [{
-          label: 'Population',
-          data: [
-            617538,
-            198742,
-            892310,
-            1000234,
-            234568,
-            876345
-          ],
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.6)',
-            'rgba(54, 162, 235, 0.6)',
-            'rgba(255, 206, 86, 0.6)',
-            'rgba(75, 192, 192, 0.6)',
-            'rgba(153, 102, 255, 0.6)',
-            'rgba(255, 159, 64, 0.6)'
-          ]
-        }]
-      }
+const state = {
+  labels: ['January', 'February', 'March',
+           'April', 'May'],
+  datasets: [
+    {
+      label: 'Profit',
+      backgroundColor: 'rgba(75,192,192,1)',
+      borderColor: 'rgba(0,0,0,1)',
+      borderWidth: 2,
+      data: [65, 59, 80, 81, 56]
     }
-	}
+  ]
+}
 
-  static defaultProps = {
-    displayTitle:true,
-    displayLegend:true,
-    legendPosition:'right'
-  }
-    
-	render() {
-
+export default class Chart extends React.Component {
+  render() {
     return (
-
-    	<div className="chart">
-    	  <Bar
-    	    date={this.state.chartData}
-    	    options={{
-    	      title: {
-    	        display: this.props.displayTitle,
-    	        text: 'Largest cities in India',
-    	        fontSize: 25
+      <div>
+        <Bar
+          data={state}
+          options={{
+            title:{
+              display:true,
+              text:'Average Profit per month',
+              fontSize:20
             },
-            legend: {
-              display: this.props.displayLegend,
-              position: this.props.legendPosition
+            legend:{
+              display:true,
+              position:'right'
             }
           }}
         />
       </div>
-    )
+    );
   }
 }
-
-
-export default Chart;

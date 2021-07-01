@@ -46,9 +46,9 @@ class Sidebar extends React.Component {
     }    
   }
 
-  componentWillUnmount() {
-    this.getUser();
-  }
+  // componentWillUnmount() {
+  //   this.getUser();
+  // }
 
   modalHide () {
     this.setState({

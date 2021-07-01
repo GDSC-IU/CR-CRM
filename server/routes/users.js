@@ -184,9 +184,9 @@ app.put('/profile/:_id/updateCompany', async (req, res) => {
 	}
 })
 
-app.put('', async (req, res) => {
+app.put('/profile/:compID/dashboard/:_id', async (req, res) => {
 	try {
-		const cust = await company.findByIdAndUpdate(req.params._id, req.body);
+		const cust = await customer.findByIdAndUpdate(req.params._id, req.body);
 		await cust.save();
 		res.status(200).send(cust);
 	}

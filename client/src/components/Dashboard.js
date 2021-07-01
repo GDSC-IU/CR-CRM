@@ -180,7 +180,7 @@ class Dashboard extends React.Component {
         {this.state.compID === undefined? <Redirect to='/login' />: console.log(this.state)}
       
         <Container>
-          <Row>
+          <Row className="mb-5">
             <Col>
               <Chart />
             </Col>
