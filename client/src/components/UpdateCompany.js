@@ -49,8 +49,10 @@ class UpdateCompany extends Component {
 			
 			const result = await res.json();
 			console.log(result);
+			console.log(this.props);
+			console.log(this.props.history);
+			console.log(this);
 			this.props.history.push(`/profile/${this.state.compID}`);
-
 		}
 		catch(err) {
 			console.log(err);

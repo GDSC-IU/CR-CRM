@@ -3,6 +3,7 @@ import { Container, Row, Col, Table, Button, OverlayTrigger, Tooltip, Form, Moda
 import { Redirect } from 'react-router-dom';
 import * as Icon from 'react-bootstrap-icons';
 import Chart from './Chart';
+import UpdateCustomer from './UpdateCustomer';
 
 class Dashboard extends React.Component {
 
@@ -16,6 +17,8 @@ class Dashboard extends React.Component {
       msgTitle: '',
       msg: '',
       custId: '',
+      garak: '',
+      updateModalShow: false,
       msgDate: new Date()
     }
 
@@ -32,9 +35,14 @@ class Dashboard extends React.Component {
   }
 
   modalHide () {
-    this.setState({
-      delModalShow: false
-    })
+    if (this.state.delModalShow === true)
+      this.setState(() => ({
+        delModalShow: false
+      }))
+    else
+      this.setState(() => ({
+        updateModalShow: false
+      }))
   }
 
   componentDidMount() {
@@ -52,6 +60,24 @@ class Dashboard extends React.Component {
       const result = await res.json();
       // console.log(result);
       this.setState({customers: result});
+    }
+    catch(err) {
+      console.log(err);
+    }
+  }
+
+  async updateCustomer() {
+    const {} = this.state;
+    try {
+      const res = await fetch(``, {
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({}),
+      });
+
+      const result = res.json();
+      console.log(result);
+      this.loadData();
     }
     catch(err) {
       console.log(err);
@@ -130,7 +156,7 @@ class Dashboard extends React.Component {
                 Edit
               </Tooltip>
             }>  
-              <Button variant="success">🖊️</Button>
+              <Button onClick={() => this.setState({updateModalShow: true, garak: customer})} variant="success">🖊️</Button>
             </OverlayTrigger>
           </td>
           <td>
@@ -151,7 +177,16 @@ class Dashboard extends React.Component {
 
     return(
       <>
-        <Modal show={this.state.delModalShow} size="md" centered onHide={this.modalHide}>
+        <Modal show={this.state.updateModalShow} size="lg" centered onHide={this.modalHide}>
+          <Modal.Header style={{backgroundColor: "#007bff", color: "white"}} closeButton>
+            <Modal.Title>Update Customer</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <UpdateCustomer garak={this.state.garak} />
+          </Modal.Body>
+        </Modal>
+
+        <Modal show={this.state.delModalShow} size="sm" centered onHide={this.modalHide}>
           <Modal.Header style={{backgroundColor: "#007bff", color: "white"}} closeButton>
             <Modal.Title>Send Message</Modal.Title>
           </Modal.Header>
@@ -167,9 +202,9 @@ class Dashboard extends React.Component {
               </Form.Group>
               <Form.Group>
                 <Form.Label>Message</Form.Label>
-                <Form.Control name="msg" value={this.state.value} onChange={this.handleInputChange} as="textarea" rows={7} placeholder="Enter Your message..." />
+                <Form.Control name="msg" value={this.state.value} onChange={this.handleInputChange} as="textarea" rows={6} placeholder="Enter Your message..." />
               </Form.Group>
-              <Form.Group className="text-right">
+              <Form.Group className="text-right mb-0">
                 <Button style={{marginRight: '1rem'}} variant="secondary" onClick={this.modalHide}>No</Button>
                 <Button variant="success" type="submit" onClick={this.send}><Icon.CursorFill size={23} /></Button>
               </Form.Group>
