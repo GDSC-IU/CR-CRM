@@ -171,9 +171,12 @@ app.post('/profile/:compID/sendMsg', async (req, res) => {
     }
 })
 
-app.put('', async (req, res) => {
+app.put('/profile/:_id/updateCompany', async (req, res) => {
 	try {
-		
+		// console.log(req.params._id);
+		const comp = await company.findByIdAndUpdate(req.params._id, req.body);
+		await comp.save();
+		res.status(200).send(comp);
 	}
 	catch(err) {
 		console.log(err);
@@ -183,7 +186,9 @@ app.put('', async (req, res) => {
 
 app.put('', async (req, res) => {
 	try {
-
+		const cust = await company.findByIdAndUpdate(req.params._id, req.body);
+		await cust.save();
+		res.status(200).send(cust);
 	}
 	catch(err) {
 		console.log(err);

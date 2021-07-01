@@ -7,7 +7,9 @@ const express = require('express'),
 app.use(express.json());
 
 mongoose.connect(url, {
-    useNewUrlParser: true}).then(() => console.log(`Connected to MongoDB at ${url}`)).catch((err) => console.log(err));
+    useNewUrlParser: true,
+    useFindAndModify: false
+}).then(() => console.log(`Connected to MongoDB at ${url}`)).catch((err) => console.log(err));
 
 app.listen(8080, () => {console.log(`App started at 8080`)});
 
