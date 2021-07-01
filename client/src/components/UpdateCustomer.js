@@ -18,7 +18,8 @@ class UpdateCustomer extends Component {
 			city: this.props.garak.city,
 			state: this.props.garak.state,
 			pincode: this.props.garak.pincode,
-			custStatus: this.props.garak.custStatus
+			custStatus: this.props.garak.custStatus,
+			assignto: this.props.garak.assignto
 		}
 
 		this.handleChange = this.handleChange.bind(this);
@@ -28,7 +29,18 @@ class UpdateCustomer extends Component {
 	}
 
 	handleReset() {
-
+		this.setState(() => ({
+			custName: this.props.garak.custName,
+			custUsername: this.props.garak.custUsername,
+			dob: this.props.garak.dob,
+			custPhn: this.props.garak.custPhn,
+			custAdd: this.props.garak.custAdd,
+			city: this.props.garak.city,
+			state: this.props.garak.state,
+			pincode: this.props.garak.pincode,
+			custStatus: this.props.garak.custStatus,
+			assignto: this.props.garak.assignto
+		}));
 	}
 
 	handleChange(e) {
@@ -46,16 +58,39 @@ class UpdateCustomer extends Component {
 	}
 
 	async updateDetails() {
-		const {} = this.state;
+		const {
+			custName,
+			custUsername,
+			dob,
+			custPhn,
+			custAdd,
+			city,
+			state,
+			pincode,
+			custStatus,
+			assignto
+		} = this.state;
 		try {
-			const res = await fetch(``, {
+			const res = await fetch(`http://localhost:8080/profile/${this.state.compID}/delCust/${this.props.garak._id}`, {
 				method: 'PUT',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({}),
+        body: JSON.stringify({
+					custName,
+					custUsername,
+					dob,
+					custPhn,
+					custAdd,
+					city,
+					state,
+					pincode,
+					custStatus,
+					assignto
+				}),
 			});
 			
 			const result = await res.json();
 			console.log(result);
+			// this.params.loadData();
 
 		}
 		catch(err) {

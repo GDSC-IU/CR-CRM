@@ -66,23 +66,23 @@ class Dashboard extends React.Component {
     }
   }
 
-  async updateCustomer() {
-    const {} = this.state;
-    try {
-      const res = await fetch(``, {
-        method: 'PUT',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({}),
-      });
+  // async updateCustomer() {
+  //   const {} = this.state;
+  //   try {
+  //     const res = await fetch(``, {
+  //       method: 'PUT',
+  //       headers: {'Content-Type': 'application/json'},
+  //       body: JSON.stringify({}),
+  //     });
 
-      const result = res.json();
-      console.log(result);
-      this.loadData();
-    }
-    catch(err) {
-      console.log(err);
-    }
-  }
+  //     const result = res.json();
+  //     console.log(result);
+  //     this.loadData();
+  //   }
+  //   catch(err) {
+  //     console.log(err);
+  //   }
+  // }
 
   send(e) {
     e.preventDefault();
@@ -182,8 +182,11 @@ class Dashboard extends React.Component {
             <Modal.Title>Update Customer</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <UpdateCustomer garak={this.state.garak} />
+            <UpdateCustomer garak={this.state.garak} loadData={this.loadData} />
           </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={this.modalHide}>Close</Button>
+          </Modal.Footer>
         </Modal>
 
         <Modal show={this.state.delModalShow} size="sm" centered onHide={this.modalHide}>
