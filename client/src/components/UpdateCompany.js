@@ -80,7 +80,7 @@ class UpdateCompany extends Component {
 						<Col>
 							<Form>
 								<h3>Update Company Details</h3>
-								<Form.Group as={Row}>
+								{/* <Form.Group as={Row}>
 									<Form.Label className="align-self-center" as={Col} md={3}>Company ID</Form.Label>
 									<Col md={4}>
 										<Form.Control style={{cursor: 'not-allowed'}} placeholder={this.state._id} readOnly />
@@ -89,7 +89,7 @@ class UpdateCompany extends Component {
 									<Col md={4}>
 										<Form.Control style={{cursor: 'not-allowed'}} placeholder={this.state.compID} readOnly />
 									</Col>
-								</Form.Group>
+								</Form.Group> */}
 								<Form.Group as={Row}>
 									<Form.Label className="align-self-center" as={Col} md={3}>Name</Form.Label>
 									<Col md={9}>

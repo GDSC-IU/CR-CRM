@@ -195,10 +195,10 @@ class Dashboard extends React.Component {
           </Modal.Header>
           <Modal.Body>
             <Form>
-              <Form.Group>
+              {/* <Form.Group>
                 <Form.Label>Customer ID</Form.Label>
                 <Form.Control value={this.state.custId} style={{cursor: "not-allowed"}} readOnly />
-              </Form.Group>
+              </Form.Group> */}
               <Form.Group>
                 <Form.Label>Message Title</Form.Label>
               	<Form.Control value={this.state.value} name="msgTitle" onChange={this.handleInputChange} type="text" placeholder="Title" />

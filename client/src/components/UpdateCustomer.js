@@ -106,7 +106,7 @@ class UpdateCustomer extends Component {
 					<Row>
 						<Col>
 							<Form>
-								<Form.Group as={Row}>
+								{/* <Form.Group as={Row}>
 									<Form.Label className="align-self-center" as={Col} md={3}>Company ID</Form.Label>
 									<Col md={3}>
 										<Form.Control value={this.state.compID} style={{cursor: "not-allowed"}} readOnly />
@@ -115,7 +115,7 @@ class UpdateCustomer extends Component {
 									<Col md={3}>
 										<Form.Control value={this.state.custID} style={{cursor: "not-allowed"}} readOnly />
 									</Col>
-								</Form.Group>
+								</Form.Group> */}
 								<Form.Group as={Row}>
 									<Form.Label className="align-self-center" as={Col} md={3}>Full Name</Form.Label>
 									<Col md={9}>

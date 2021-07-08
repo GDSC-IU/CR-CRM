@@ -71,12 +71,12 @@ class Employee extends Component {
 					<Card.Body>
 						<Card.Title>Employee Registration</Card.Title>
 						<Form>
-							<Form.Group as={Row}>
+							{/* <Form.Group as={Row}>
 								<Form.Label as={Col} md={3}>Company ID</Form.Label>
 								<Col md={4}>
 									<Form.Control value={this.state.value} style={{cursor: "not-allowed"}} placeholder={this.props.user.compID} readOnly />
 								</Col>
-							</Form.Group>
+							</Form.Group> */}
 							<Form.Group as={Row}>
 								<Form.Label as={Col} md={3}>Full Name</Form.Label>
 								<Col md={4}>
