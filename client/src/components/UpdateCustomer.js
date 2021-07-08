@@ -91,7 +91,7 @@ class UpdateCustomer extends Component {
 			const result = await res.json();
 			console.log(result);
 			// this.params.loadData();
-
+			alert('Customer Updated');
 		}
 		catch(err) {
 			console.log(err);

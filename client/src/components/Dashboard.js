@@ -35,14 +35,18 @@ class Dashboard extends React.Component {
   }
 
   modalHide () {
-    if (this.state.delModalShow === true)
+    if (this.state.delModalShow === true) {
       this.setState(() => ({
         delModalShow: false
       }))
-    else
+      this.loadData();
+    }
+    else {
       this.setState(() => ({
         updateModalShow: false
       }))
+      this.loadData();
+    }
   }
 
   componentDidMount() {
@@ -106,6 +110,7 @@ class Dashboard extends React.Component {
         msgTitle: '',
         delModalShow: false
       }));
+      alert('Message Sent');
     }
     catch(err) {
       console.log(err);
@@ -142,9 +147,18 @@ class Dashboard extends React.Component {
           <td>{customer.custPhn}</td>
           <td>{customer.custEmail}</td>
           <td>
+            <OverlayTrigger key="msgDisplay-top" placement="top" overlay={
+              <Tooltip id={`msgDisplay-tooltip-top`}>
+                Messages
+              </Tooltip>
+            }>  
+              <Button onClick={() => this.setState({delModalShow: true, custId: customer.custID})}></Button>
+            </OverlayTrigger>
+          </td>
+          <td>
             <OverlayTrigger key="msg-top" placement="top" overlay={
               <Tooltip id={`msg-tooltip-top`}>
-                Message
+                Send Message
               </Tooltip>
             }>  
               <Button onClick={() => this.setState({delModalShow: true, custId: customer.custID})}>💬</Button>
@@ -182,7 +196,7 @@ class Dashboard extends React.Component {
             <Modal.Title>Update Customer</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <UpdateCustomer garak={this.state.garak} loadData={this.loadData} />
+            <UpdateCustomer garak={this.state.garak} />
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={this.modalHide}>Close</Button>
