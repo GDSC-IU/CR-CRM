@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom';
 import * as Icon from 'react-bootstrap-icons';
 import Chart from './Chart';
 import UpdateCustomer from './UpdateCustomer';
+import Messages from './Messages';
 
 class Dashboard extends React.Component {
 
@@ -19,6 +20,7 @@ class Dashboard extends React.Component {
       custId: '',
       garak: '',
       updateModalShow: false,
+      showMsgModal: false,
       msgDate: new Date()
     }
 
@@ -39,14 +41,18 @@ class Dashboard extends React.Component {
       this.setState(() => ({
         delModalShow: false
       }))
-      this.loadData();
     }
-    else {
+    else if (this.state.updateModalShow === true) {
       this.setState(() => ({
         updateModalShow: false
       }))
-      this.loadData();
     }
+    else {
+      this.setState(() => ({
+        showMsgModal: false
+      }))
+    }
+    this.loadData();
   }
 
   componentDidMount() {
@@ -152,7 +158,7 @@ class Dashboard extends React.Component {
                 Messages
               </Tooltip>
             }>  
-              <Button onClick={() => this.setState({delModalShow: true, custId: customer.custID})}></Button>
+              <Button onClick={() => this.setState({showMsgModal: true, custID: customer.custID})}><Icon.InfoCircle size={20} /></Button>
             </OverlayTrigger>
           </td>
           <td>
@@ -191,6 +197,18 @@ class Dashboard extends React.Component {
 
     return(
       <>
+        <Modal show={this.state.showMsgModal} size="sm" centered onHide={this.modalHide}>
+          <Modal.Header style={{backgroundColor: "#007bff", color: "white"}} closeButton>
+            <Modal.Title>Messages</Modal.Title>
+          </Modal.Header>
+          <Modal.Body className="p-0">
+            <Messages custID={this.state.custID} />
+          </Modal.Body>
+          <Modal.Footer className="p-0">
+            <Button variant="secondary" className="py-1" onClick={this.modalHide}>Close</Button>
+          </Modal.Footer>
+        </Modal>
+
         <Modal show={this.state.updateModalShow} size="lg" centered onHide={this.modalHide}>
           <Modal.Header style={{backgroundColor: "#007bff", color: "white"}} closeButton>
             <Modal.Title>Update Customer</Modal.Title>

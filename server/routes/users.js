@@ -196,4 +196,17 @@ app.put('/profile/:compID/delCust/:_id', async (req, res) => {
 	}
 })
 
+app.get('/messages/:custID', async (req, res) => {
+	try {
+		// console.log(req.params.custID);
+		const msg = await message.find({custId: req.params.custID});
+		console.log(msg);
+		res.status(200).send(msg);
+	}
+	catch(err) {
+		console.log(err);
+		res.status(500).send(err);
+	}
+})
+
 module.exports = app;
