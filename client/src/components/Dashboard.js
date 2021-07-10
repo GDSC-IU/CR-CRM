@@ -158,7 +158,7 @@ class Dashboard extends React.Component {
                 Messages
               </Tooltip>
             }>  
-              <Button onClick={() => this.setState({showMsgModal: true, custID: customer.custID})}><Icon.InfoCircle size={20} /></Button>
+              <Button variant="info" onClick={() => this.setState({showMsgModal: true, custID: customer.custID})}><Icon.InfoCircle size={20} /></Button>
             </OverlayTrigger>
           </td>
           <td>
@@ -167,7 +167,7 @@ class Dashboard extends React.Component {
                 Send Message
               </Tooltip>
             }>  
-              <Button onClick={() => this.setState({delModalShow: true, custId: customer.custID})}>💬</Button>
+              <Button variant="warning" onClick={() => this.setState({delModalShow: true, custId: customer.custID})}>💬</Button>
             </OverlayTrigger>
           </td>
           <td>

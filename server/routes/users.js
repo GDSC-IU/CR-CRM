@@ -133,7 +133,7 @@ app.delete('/profile/:compID', async (req, res) => {
         user = await customer.deleteMany({compID: req.params.compID});
         // if (!user) res.status(404).send('No user found');
         
-        user = await message.deleteMany({compID: req.params.compID});
+        user = await message.deleteMany({compId: req.params.compID});
         res.status(200).send();
     }
     catch (err) {
@@ -145,9 +145,9 @@ app.delete('/profile/:compID', async (req, res) => {
 app.delete('/profile/:compID/delCust/:custID', async (req, res) => {
     try {
         const cust = await customer.deleteOne({custID: req.params.custID});
-        if (!cust) res.status(404).send('Customer already Delted');
+        if (!cust) res.status(404).send('Customer already Deleted');
 
-        cust = await message.deleteMany({custID: req.params.custID});
+        cust = await message.deleteMany({custId: req.params.custID});
 
         res.status(200).send();
     }
@@ -206,6 +206,28 @@ app.get('/messages/:custID', async (req, res) => {
 	catch(err) {
 		console.log(err);
 		res.status(500).send(err);
+	}
+})
+
+app.delete('/messages/:_id', async (req, res) => {
+	try {
+		const msg = await message.findByIdAndDelete(req.params._id);
+		res.status(200);
+	}
+	catch (err) {
+		console.log(err);
+		res.status(303).send(err);
+	}
+})
+
+app.put('/messages/:_id', async (req, res) => {
+	try {
+		await message.findByIdAndUpdate(req.params._id, req.body);
+		res.status(200).send(true);
+	}
+	catch(err) {
+		console.log(err);
+		res.status(303).send(false);
 	}
 })
 
