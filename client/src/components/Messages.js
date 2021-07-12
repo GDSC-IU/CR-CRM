@@ -61,7 +61,7 @@ class Messages extends React.Component {
           'Content-Type': 'application/json'
         },
       });
-      // alert('Customer Deleted!!');
+      alert('Message Deleted!!');
       this.loadData();
     }
     catch (err) {
@@ -87,7 +87,6 @@ class Messages extends React.Component {
 			const result = await res.json();
 			if (result)
 				alert('Message Updated Successfully');
-			this.hideModal();
 			this.loadData();
 		}
 		catch(err) {
@@ -106,8 +105,8 @@ class Messages extends React.Component {
 					<Accordion.Toggle as={Card.Header} className="py-2" eventKey={num}>
 						<span>{msg.msgTitle}</span>
 						<span className="float-right">
-							<Button onClick={() => this.setState({msgModal: true, mid: msg._id, msg: msg.msg})} className="rounded-circle btn-outline-info px-1 py-0"><PencilSquare size={15} /></Button>
-							<Button onClick={() => this.deleteMsg(msg._id)} className="rounded-circle btn-outline-danger px-1 py-0 ml-2"><Trash size={15} /></Button>
+							<Button variant="outline-info" onClick={() => this.setState({msgModal: true, mid: msg._id, msg: msg.msg})} className="rounded-circle px-1 py-0"><PencilSquare size={15} /></Button>
+							<Button variant="outline-danger" onClick={() => this.deleteMsg(msg._id)} className="rounded-circle px-1 py-0 ml-2"><Trash size={15} /></Button>
 						</span>
 					</Accordion.Toggle>
 					<Accordion.Collapse eventKey={num}>
